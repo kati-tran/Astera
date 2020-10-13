@@ -268,8 +268,6 @@ MonoBehaviour:
   verticalDrag: 0.2
   maxAirJumps: 1
   groundContactCollider: {fileID: 328378554}
-  jumpCount: 0
-  onGround: 0
 --- !u!212 &328378550
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -440,7 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 328378548}
   camFloat: 2
-  camLeadVertical: 0.75
+  camLeadVertical: 1
   camLeadHorizontal: 2
 --- !u!20 &519420031
 Camera:
