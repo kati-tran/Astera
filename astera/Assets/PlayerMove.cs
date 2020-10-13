@@ -5,10 +5,10 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     //Configurable properties
-    public float moveSpeed = 50f;
-    public float jumpStrength = 25f;
-    public float horizontalDrag = 1f;
-    public float verticalDrag = .1f;
+    public float moveSpeed = 150f;
+    public float jumpStrength = 30f;
+    public float horizontalDrag = 2f;
+    public float verticalDrag = .2f;
     public int maxAirJumps = 1;
     public Collider2D groundContactCollider;
 
@@ -17,8 +17,8 @@ public class PlayerMove : MonoBehaviour
     ContactFilter2D groundFilter;
 
     //Variables
-    public int jumpCount = 0;
-    public bool onGround;
+    int jumpCount = 0;
+    bool onGround;
     bool jumpInput = false;
 
     // Start is called before the first frame update

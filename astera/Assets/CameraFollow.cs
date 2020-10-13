@@ -5,13 +5,11 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     public GameObject target;
-    public float camFloat = 1f;
-    public float camLeadVertical = .5f;
-    public float camLeadHorizontal = 1.5f;
+    public float camFloat = 2f;
+    public float camLeadVertical = 1f;
+    public float camLeadHorizontal = 2f;
 
     Rigidbody2D targetBody;
-
-    private Vector3 velocity = Vector3.zero;
 
     // Start is called before the first frame update
     void Start()
