@@ -101,7 +101,7 @@ MonoBehaviour:
   jumpStrength: 30
   horizontalDrag: 2
   verticalDrag: 0.2
-  maxAirJumps: 1
+  maxAirJumps: 0
   groundContactCollider: {fileID: 8211630241777611275}
 --- !u!50 &8211630241777611273
 Rigidbody2D:
