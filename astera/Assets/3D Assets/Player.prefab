@@ -164,5 +164,5 @@ MonoBehaviour:
   jumpStrength: 30
   horizontalDrag: 2
   verticalDrag: 0.2
-  maxAirJumps: 1
+  maxAirJumps: 0
   groundContactCollider: {fileID: 8238861454221233635}
