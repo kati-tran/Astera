@@ -24,13 +24,28 @@ public class PlayerMove : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         rigidBody = GetComponent<Rigidbody2D>();
         groundFilter = new ContactFilter2D { layerMask = LayerMask.GetMask("Ground") };
     }
 
     // Frame update
     void Update()
-    {
+    {   
+        // sets animation speed for walking/running/idling
+        GetComponent<Animator>().SetFloat("Speed", Mathf.Abs(rigidBody.velocity.x));
+
+        // changes 3d model rotation if player is moving left or right
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            transform.rotation = Quaternion.Euler(0, -91, 0);
+        }
+        else if (Input.GetAxis("Horizontal") > 0)
+        {
+            transform.rotation = Quaternion.Euler(0, 91, 0);
+        }
+
+
         if(Input.GetButtonDown("Jump"))
         {
             jumpInput = true;
