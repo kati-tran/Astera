@@ -5,11 +5,13 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     //Configurable properties
-    public float moveSpeed = 150f;
-    public float jumpStrength = 30f;
-    public float horizontalDrag = 2f;
-    public float verticalDrag = .2f;
+    public float moveSpeed = 55f;
+    public float jumpStrength = 33f;
+    public float stopSpeed = 0.5f; //Player will come to a compete stop when speed falls below this value
+    public float horizontalDrag = 0.3f;
+    public float verticalDrag = 0.1f;
     public int maxAirJumps = 0;
+    public int jumpLeniency = 5;
     public Collider2D groundContactCollider;
 
     //Set up during Start()
@@ -18,15 +20,15 @@ public class PlayerMove : MonoBehaviour
 
     //Variables
     int jumpCount = 0;
+    int offGroundCount = 0;
     bool onGround;
     bool jumpInput = false;
 
     // Start is called before the first frame update
     void Start()
     {
-
         rigidBody = GetComponent<Rigidbody2D>();
-        groundFilter = new ContactFilter2D { layerMask = LayerMask.GetMask("Ground") };
+        groundFilter = new ContactFilter2D(); //{ layerMask = LayerMask.GetMask("Ground"), useLayerMask = true }; //not currently filtering
     }
 
     // Frame update
@@ -38,11 +40,11 @@ public class PlayerMove : MonoBehaviour
         // changes 3d model rotation if player is moving left or right
         if (Input.GetAxis("Horizontal") < 0)
         {
-            transform.rotation = Quaternion.Euler(0, -91, 0);
+            transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         else if (Input.GetAxis("Horizontal") > 0)
         {
-            transform.rotation = Quaternion.Euler(0, 91, 0);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
 
@@ -55,22 +57,42 @@ public class PlayerMove : MonoBehaviour
     // Physics update
     void FixedUpdate()
     {
-        //Apply horizontal movement force
-        Vector2 moveForce = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, 0);
-        rigidBody.AddForce(moveForce);
-
         //Update jumping related variables and apply jump impulse (if applicable)
         onGround = groundContactCollider.IsTouching(groundFilter);
-        if (onGround && jumpCount > 0)
-            jumpCount = 0;
+        if (!onGround && offGroundCount < jumpLeniency)
+            ++offGroundCount;
+        if (onGround)
+        {
+            if (jumpCount > 0)
+                jumpCount = 0;
+            if (offGroundCount > 0)
+                offGroundCount = 0;
+        }
         if(jumpInput)
         {
             if(canJump())
             {
                 rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
+            }
+            if(canAirJump())
+            {
+                rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
                 ++jumpCount;
             }
             jumpInput = false;
+        }
+
+        //Apply horizontal movement force
+        if (Input.GetAxis("Horizontal") == 0)   //If no movement input
+        {
+            if(Mathf.Abs(rigidBody.velocity.x) > stopSpeed)                                         //If speed is above stop threshold
+                rigidBody.AddForce(new Vector2(moveSpeed * -Mathf.Sign(rigidBody.velocity.x), 0));      //Apply force in the direction opposite to horizontal movement in order to bring player to a stop
+            else                                                                                    //If speed is at or below stop threshold
+                rigidBody.velocity = new Vector2(0, rigidBody.velocity.y);                              //Bring player to a stop in horizontal direction
+        }
+        else                                    //If there is movement input
+        {
+            rigidBody.AddForce(new Vector2(Input.GetAxis("Horizontal") * moveSpeed, 0)); //Apply force in direction of input
         }
 
         //Apply drag force (implemented manually to allow for different amounts of drag in different axes)
@@ -80,7 +102,12 @@ public class PlayerMove : MonoBehaviour
 
     private bool canJump()
     {
-        return onGround || jumpCount < maxAirJumps;
+        return onGround || offGroundCount < jumpLeniency;
+    }
+
+    private bool canAirJump()
+    {
+        return !canJump() && jumpCount < maxAirJumps;
     }
 
     private Vector2 abs(Vector2 v)
