@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviour
+public class PlayerMove3D : MonoBehaviour
 {
     //Configurable properties
     public float moveSpeed = 150f;
@@ -10,33 +10,33 @@ public class PlayerMove : MonoBehaviour
     public float horizontalDrag = 2f;
     public float verticalDrag = .2f;
     public int maxAirJumps = 0;
-    public Collider2D groundContactCollider;
+    public Collider groundContactCollider;
 
     //Set up during Start()
-    Rigidbody2D rigidBody;
-    ContactFilter2D groundFilter;
+    Rigidbody rigidBody;
+    Animator animator;
 
     //Variables
     int jumpCount = 0;
     bool onGround;
     bool jumpInput = false;
+    List<Collider> Colliders = new List<Collider>(); //For keeping track of what colliders groundContactCollider is in contact with
 
     // Start is called before the first frame update
     void Start()
     {
-
-        rigidBody = GetComponent<Rigidbody2D>();
-        groundFilter = new ContactFilter2D { layerMask = LayerMask.GetMask("Ground") };
+        rigidBody = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
 
     // Frame update
     void Update()
-    {   
+    {
         // sets animation speed for walking/running/idling
-        GetComponent<Animator>().SetFloat("Speed", Mathf.Abs(rigidBody.velocity.x));
+        animator.SetFloat("Speed", Mathf.Abs(rigidBody.velocity.x));
 
         // changes 3d model rotation if player is moving left or right
-        if (Input.GetAxis("Horizontal") < 0)
+        if (Input.GetAxis("Horizontal") < 0) 
         {
             transform.rotation = Quaternion.Euler(0, -91, 0);
         }
@@ -46,7 +46,7 @@ public class PlayerMove : MonoBehaviour
         }
 
 
-        if(Input.GetButtonDown("Jump"))
+        if (Input.GetButtonDown("Jump"))
         {
             jumpInput = true;
         }
@@ -56,25 +56,25 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         //Apply horizontal movement force
-        Vector2 moveForce = new Vector2(Input.GetAxis("Horizontal") * moveSpeed, 0);
+        Vector3 moveForce = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, 0);
         rigidBody.AddForce(moveForce);
 
         //Update jumping related variables and apply jump impulse (if applicable)
-        onGround = groundContactCollider.IsTouching(groundFilter);
+        onGround = Colliders.Count > 0;
         if (onGround && jumpCount > 0)
             jumpCount = 0;
-        if(jumpInput)
+        if (jumpInput)
         {
-            if(canJump())
+            if (canJump())
             {
-                rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
+                rigidBody.AddForce(new Vector3(0f, jumpStrength), ForceMode.Impulse);
                 ++jumpCount;
             }
             jumpInput = false;
         }
 
         //Apply drag force (implemented manually to allow for different amounts of drag in different axes)
-        Vector2 dragForce = rigidBody.velocity * abs(rigidBody.velocity) * -new Vector2(horizontalDrag, verticalDrag);
+        Vector3 dragForce = Vector3.Scale(Vector3.Scale(rigidBody.velocity, abs(rigidBody.velocity)), -new Vector3(horizontalDrag, verticalDrag));
         rigidBody.AddForce(dragForce);
     }
 
@@ -83,8 +83,21 @@ public class PlayerMove : MonoBehaviour
         return onGround || jumpCount < maxAirJumps;
     }
 
-    private Vector2 abs(Vector2 v)
+    private Vector3 abs(Vector3 v)
     {
-        return new Vector2(System.Math.Abs(v.x), System.Math.Abs(v.y));
+        return new Vector3(Mathf.Abs(v.x), Mathf.Abs(v.y), Mathf.Abs(v.z));
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("OnTriggerEnter: " + other.name);
+        Colliders.Add(other);
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        Debug.Log("OnTriggerExit: " + other.name);
+        if (!Colliders.Remove(other))
+            Debug.Log("Failed to remove!!!!!!");
     }
 }
