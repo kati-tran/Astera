@@ -13,6 +13,10 @@ public class PlayerMove : MonoBehaviour
     public int maxAirJumps = 0;
     public int jumpLeniency = 5;
     public Collider2D groundContactCollider;
+    public float flightDuration = 5f;
+    public float flightStrength = 20f;
+
+    
 
     //Set up during Start()
     Rigidbody2D rigidBody;
@@ -23,6 +27,8 @@ public class PlayerMove : MonoBehaviour
     int offGroundCount = 0;
     bool onGround;
     bool jumpInput = false;
+    float flightTime = 5f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -74,12 +80,21 @@ public class PlayerMove : MonoBehaviour
             {
                 rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
             }
-            if(canAirJump())
+            if(canAirJump() && flightTime > 0 && Input.GetKey("space"))
             {
-                rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
-                ++jumpCount;
+                // rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
+                // ++jumpCount;
+                rigidBody.AddForce(new Vector2(0f,flightStrength), ForceMode2D.Force);
+                flightTime -= 0.1f;
             }
-            jumpInput = false;
+            else {
+                jumpInput = false;
+            }
+            // Reset the flight timer if on ground
+            if (onGround){
+                flightTime = flightDuration;
+            }
+            // jumpInput = false;
         }
 
         //Apply horizontal movement force
