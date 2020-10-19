@@ -80,20 +80,21 @@ public class PlayerMove : MonoBehaviour
             {
                 rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
             }
-            if(canAirJump() && flightTime > 0 && Input.GetKey("space"))
-            {
-                // rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
-                // ++jumpCount;
-                rigidBody.AddForce(new Vector2(0f,flightStrength), ForceMode2D.Force);
-                flightTime -= 0.1f;
-            }
-            else {
-                jumpInput = false;
-            }
+            bird();
+            // if(canAirJump() && flightTime > 0 && Input.GetKey("space"))
+            // {
+            //     // rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
+            //     // ++jumpCount;
+            //     rigidBody.AddForce(new Vector2(0f,flightStrength), ForceMode2D.Force);
+            //     flightTime -= 0.1f;
+            // }
+            // else {
+            //     jumpInput = false;
+            // }
             // Reset the flight timer if on ground
-            if (onGround){
-                flightTime = flightDuration;
-            }
+            // if (onGround){
+            //     flightTime = flightDuration;
+            // }
             // jumpInput = false;
         }
 
@@ -128,5 +129,21 @@ public class PlayerMove : MonoBehaviour
     private Vector2 abs(Vector2 v)
     {
         return new Vector2(System.Math.Abs(v.x), System.Math.Abs(v.y));
+    }
+
+    private void bird(){
+        if(canAirJump() && flightTime > 0 && Input.GetKey("space"))
+            {
+                // rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
+                // ++jumpCount;
+                rigidBody.AddForce(new Vector2(0f,flightStrength), ForceMode2D.Force);
+                flightTime -= 0.1f;
+            }
+            else {
+                jumpInput = false;
+            }
+        if (onGround){
+            flightTime = flightDuration;
+        }
     }
 }
