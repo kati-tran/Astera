@@ -22,6 +22,7 @@ public class PlayerMove : MonoBehaviour
     //Set up during Start()
     Rigidbody2D rigidBody;
     ContactFilter2D groundFilter;
+    Animator anim;
 
     //Variables
     int jumpCount = 0;
@@ -39,8 +40,12 @@ public class PlayerMove : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         groundFilter = new ContactFilter2D(); //{ layerMask = LayerMask.GetMask("Ground"), useLayerMask = true }; //not currently filtering
+<<<<<<< HEAD
         OGhdrag = horizontalDrag;
 
+=======
+        anim = GetComponent<Animator>();
+>>>>>>> fixed going left jitter and cleaned up some code
     }
 
     // Frame update
@@ -49,6 +54,15 @@ public class PlayerMove : MonoBehaviour
         // sets animation speed for walking/running/idling
         GetComponent<Animator>().SetFloat("Speed", Mathf.Abs(rigidBody.velocity.x));
 
+        if(Input.GetButtonDown("Jump"))
+        {
+            jumpInput = true;
+        }
+    }
+
+    // Physics update
+    void FixedUpdate()
+    {
         // changes 3d model rotation if player is moving left or right
         // Left
         if (Input.GetAxis("Horizontal") < 0)
@@ -61,16 +75,6 @@ public class PlayerMove : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
-
-        if(Input.GetButtonDown("Jump"))
-        {
-            jumpInput = true;
-        }
-    }
-
-    // Physics update
-    void FixedUpdate()
-    {
         //Update jumping related variables and apply jump impulse (if applicable)
         onGround = groundContactCollider.IsTouching(groundFilter);
         if (!onGround && offGroundCount < jumpLeniency)

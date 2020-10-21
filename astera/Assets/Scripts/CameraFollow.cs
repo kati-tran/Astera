@@ -35,7 +35,7 @@ public class CameraFollow : MonoBehaviour
     void Update()
     {
         Vector3 pos = use3D ? targetBody3D.position : (Vector3)targetBody2D.position,
-            velocity = use3D ? targetBody3D.velocity : (Vector3)targetBody2D.velocity;
+        velocity = use3D ? targetBody3D.velocity : (Vector3)targetBody2D.velocity;
         Vector3 targetCamPos = pos + camOffset + Vector3.Scale(velocity, new Vector3(camLeadHorizontal, camLeadVertical, 0) / 10);
         Vector3 camDelta = 30 * Time.deltaTime * (targetCamPos - transform.position) / (Mathf.Abs(camFloat) + 1);
         transform.position += camDelta;
