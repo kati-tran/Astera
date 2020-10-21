@@ -885,7 +885,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 55
-  jumpStrength: 33
+  jumpStrength: 20
   stopSpeed: 0.5
   horizontalDrag: 0.3
   verticalDrag: 0.1
@@ -893,8 +893,9 @@ MonoBehaviour:
   jumpLeniency: 5
   groundContactCollider: {fileID: 1942400551}
   flightDuration: 5
-  flightStrength: 50
-  flyDrag: 1
+  flightStrength: 45
+  flyDrag: 3
+  isFlying: 0
 --- !u!50 &585306521
 Rigidbody2D:
   serializedVersion: 4
@@ -3345,10 +3346,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba81b88df1db434c9f5244134619619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1942400548}
   xOffset: 1.5
   yOffset: 2.5
   birdSpeed: 0.2
-  player: {fileID: 1942400548}
 --- !u!1001 &1917505609
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4343,7 +4344,7 @@ GameObject:
   - component: {fileID: 1942400549}
   m_Layer: 0
   m_Name: Cat Lite
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

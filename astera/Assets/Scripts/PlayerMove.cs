@@ -30,6 +30,7 @@ public class PlayerMove : MonoBehaviour
     bool jumpInput = false;
     float flightTime = 5f; 
     float OGhdrag;
+    public bool isFlying = false;
     
 
 
@@ -76,6 +77,7 @@ public class PlayerMove : MonoBehaviour
             ++offGroundCount;
         if (onGround)
         {
+            isFlying = false;
             if ((float)horizontalDrag == (float)(OGhdrag + flyDrag))
             {
                 horizontalDrag -= flyDrag;
@@ -146,6 +148,7 @@ public class PlayerMove : MonoBehaviour
     private void bird(){
         if(canAirJump() && flightTime > 0 && Input.GetKey("space"))
             {
+                isFlying = true;
                 horizontalDrag = OGhdrag + flyDrag;
                 rigidBody.AddForce(new Vector2(0f,flightStrength), ForceMode2D.Force);
                 flightTime -= 0.1f;
