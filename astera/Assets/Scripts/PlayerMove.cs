@@ -40,22 +40,10 @@ public class PlayerMove : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         groundFilter = new ContactFilter2D(); //{ layerMask = LayerMask.GetMask("Ground"), useLayerMask = true }; //not currently filtering
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 77879a3be23a4bdec87ea7b1324b509d2250370f
         OGhdrag = horizontalDrag;
+        anim = GetComponent<Animator>();
 
-=======
-        anim = GetComponent<Animator>();
-<<<<<<< HEAD
->>>>>>> fixed going left jitter and cleaned up some code
-=======
-        anim = GetComponent<Animator>();
-=======
->>>>>>> 77879a3be23a4bdec87ea7b1324b509d2250370f
->>>>>>> d6240313e5550a2104ad191bb4151f57346e18a8
+
     }
 
     // Frame update
