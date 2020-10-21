@@ -6,6 +6,7 @@ public class birdController : MonoBehaviour
 {
     public GameObject player;
     PlayerMove playerScript; 
+    public Animator anim;
 
     Vector3 playerPos;
     Vector3 birdPos;
@@ -16,6 +17,7 @@ public class birdController : MonoBehaviour
 
     void Start(){
         playerScript = player.GetComponent<PlayerMove>();
+        anim = player.GetComponent<Animator>();
     }
 
     void Awake(){
@@ -56,6 +58,7 @@ public class birdController : MonoBehaviour
         playerPos = player.transform.position;
         if (playerScript.isFlying)
         {
+            anim.Play("Run", -1, 0f);
             birdPos = new Vector3(playerPos.x,playerPos.y + 1.3f ,playerPos.z);
             transform.position = Vector3.MoveTowards(transform.position,birdPos, birdSpeed * 2);
         }
@@ -64,9 +67,9 @@ public class birdController : MonoBehaviour
                 birdPos = new Vector3(playerPos.x + xOffset,playerPos.y + yOffset,playerPos.z);
             else if (Input.GetAxis("Horizontal") > 0)
                 birdPos = new Vector3(playerPos.x - xOffset,playerPos.y + yOffset,playerPos.z);
-            else {
-                birdPos = new Vector3(playerPos.x,playerPos.y + 1.3f ,playerPos.z);
-            }
+            // else {
+            //     birdPos = new Vector3(playerPos.x,playerPos.y + 1.3f ,playerPos.z);
+            // }
             transform.position = Vector3.MoveTowards(transform.position,birdPos, birdSpeed);
         }
         
