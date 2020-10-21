@@ -15,6 +15,7 @@ public class PlayerMove : MonoBehaviour
     public Collider2D groundContactCollider;
     public float flightDuration = 5f;
     public float flightStrength = 20f;
+    public float flyDrag = 1f;
 
     
 
@@ -27,7 +28,9 @@ public class PlayerMove : MonoBehaviour
     int offGroundCount = 0;
     bool onGround;
     bool jumpInput = false;
-    float flightTime = 5f;
+    float flightTime = 5f; 
+    float OGhdrag;
+    
 
 
     // Start is called before the first frame update
@@ -35,6 +38,8 @@ public class PlayerMove : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         groundFilter = new ContactFilter2D(); //{ layerMask = LayerMask.GetMask("Ground"), useLayerMask = true }; //not currently filtering
+        OGhdrag = horizontalDrag;
+
     }
 
     // Frame update
@@ -44,10 +49,12 @@ public class PlayerMove : MonoBehaviour
         GetComponent<Animator>().SetFloat("Speed", Mathf.Abs(rigidBody.velocity.x));
 
         // changes 3d model rotation if player is moving left or right
+        // Left
         if (Input.GetAxis("Horizontal") < 0)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+        // right
         else if (Input.GetAxis("Horizontal") > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -69,6 +76,11 @@ public class PlayerMove : MonoBehaviour
             ++offGroundCount;
         if (onGround)
         {
+            if ((float)horizontalDrag == (float)(OGhdrag + flyDrag))
+            {
+                horizontalDrag -= flyDrag;
+            }
+                
             if (jumpCount > 0)
                 jumpCount = 0;
             if (offGroundCount > 0)
@@ -134,13 +146,13 @@ public class PlayerMove : MonoBehaviour
     private void bird(){
         if(canAirJump() && flightTime > 0 && Input.GetKey("space"))
             {
-                // rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
-                // ++jumpCount;
+                horizontalDrag = OGhdrag + flyDrag;
                 rigidBody.AddForce(new Vector2(0f,flightStrength), ForceMode2D.Force);
                 flightTime -= 0.1f;
             }
             else {
                 jumpInput = false;
+                
             }
         if (onGround){
             flightTime = flightDuration;

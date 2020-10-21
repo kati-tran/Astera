@@ -571,7 +571,7 @@ PrefabInstance:
     - target: {fileID: 4206118913845244791, guid: 22e82e37709fde34fb65a2fd28fbfb05,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4206118913845244791, guid: 22e82e37709fde34fb65a2fd28fbfb05,
         type: 3}
@@ -581,7 +581,7 @@ PrefabInstance:
     - target: {fileID: 4206118913845244791, guid: 22e82e37709fde34fb65a2fd28fbfb05,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4206118913845244791, guid: 22e82e37709fde34fb65a2fd28fbfb05,
         type: 3}
@@ -611,7 +611,7 @@ PrefabInstance:
     - target: {fileID: 4206118913845244791, guid: 22e82e37709fde34fb65a2fd28fbfb05,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 0.5000001
       objectReference: {fileID: 0}
     - target: {fileID: 4206118913845244791, guid: 22e82e37709fde34fb65a2fd28fbfb05,
         type: 3}
@@ -621,7 +621,7 @@ PrefabInstance:
     - target: {fileID: 4206118913845244791, guid: 22e82e37709fde34fb65a2fd28fbfb05,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 0.5000001
       objectReference: {fileID: 0}
     - target: {fileID: 4206118913862291738, guid: 22e82e37709fde34fb65a2fd28fbfb05,
         type: 3}
@@ -894,6 +894,7 @@ MonoBehaviour:
   groundContactCollider: {fileID: 1942400551}
   flightDuration: 5
   flightStrength: 50
+  flyDrag: 1
 --- !u!50 &585306521
 Rigidbody2D:
   serializedVersion: 4
@@ -3346,6 +3347,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   xOffset: 1.5
   yOffset: 2.5
+  birdSpeed: 0.2
   player: {fileID: 1942400548}
 --- !u!1001 &1917505609
 PrefabInstance:
