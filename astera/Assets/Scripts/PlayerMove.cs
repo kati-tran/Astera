@@ -37,7 +37,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {   
         // sets animation speed for walking/running/idling
-        GetComponent<Animator>().SetFloat("Speed", Mathf.Abs(rigidBody.velocity.x));
+        anim.SetFloat("Speed", Mathf.Abs(rigidBody.velocity.x));
 
         if(Input.GetButtonDown("Jump"))
         {
