@@ -32,6 +32,7 @@ public class PlayerMove : MonoBehaviour
     float flightTime = 5f; 
     float OGhdrag;
     public bool isFlying = false;
+    public GameObject birdobj;
     
 
 
@@ -50,7 +51,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {   
         // sets animation speed for walking/running/idling
-        GetComponent<Animator>().SetFloat("Speed", Mathf.Abs(rigidBody.velocity.x));
+        anim.SetFloat("Speed", Mathf.Abs(rigidBody.velocity.x));
 
         if(Input.GetButtonDown("Jump"))
         {
@@ -96,7 +97,18 @@ public class PlayerMove : MonoBehaviour
             {
                 rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
             }
-            bird();
+            if (birdobj.activeSelf){
+                bird();
+            }
+            else{
+                if(canAirJump())
+                {
+                    rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
+                    ++jumpCount;
+                }
+                jumpInput = false;
+            }
+                
             // if(canAirJump() && flightTime > 0 && Input.GetKey("space"))
             // {
             //     // rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);

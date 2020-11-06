@@ -895,6 +895,7 @@ MonoBehaviour:
   flightDuration: 4
   flightStrength: 55
   flyDrag: 1
+  isFlying: 0
 --- !u!50 &585306521
 Rigidbody2D:
   serializedVersion: 4
@@ -2320,7 +2321,7 @@ ParticleSystem:
   m_GameObject: {fileID: 1258253211}
   serializedVersion: 6
   lengthInSec: 5
-  simulationSpeed: 0.5
+  simulationSpeed: 3
   stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
@@ -8207,10 +8208,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ba81b88df1db434c9f5244134619619, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1942400548}
+  anim: {fileID: 0}
   xOffset: 1.5
   yOffset: 2.5
   birdSpeed: 0.2
-  player: {fileID: 1942400548}
 --- !u!1001 &1917505609
 PrefabInstance:
   m_ObjectHideFlags: 0
