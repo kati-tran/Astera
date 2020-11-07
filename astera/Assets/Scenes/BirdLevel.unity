@@ -794,7 +794,7 @@ GameObject:
   - component: {fileID: 323218326}
   - component: {fileID: 323218325}
   - component: {fileID: 323218324}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FallingLeaves (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -922,7 +922,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 323218323}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25, y: 16, z: 0}
+  m_LocalPosition: {x: 3.16, y: 3.97, z: 0}
   m_LocalScale: {x: 3.7649431, y: 0.76782894, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -10783,7 +10783,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1942400548}
-  anim: {fileID: 0}
   xOffset: 1.5
   yOffset: 2.5
   birdSpeed: 0.2
