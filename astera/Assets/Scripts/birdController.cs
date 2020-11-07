@@ -8,7 +8,6 @@ public class birdController : MonoBehaviour
     PlayerMove playerScript; 
     public Animator anim;
 
-    bool active;
     Vector3 playerPos;
     Vector3 birdPos;
     public float xOffset = 2;
@@ -22,7 +21,6 @@ public class birdController : MonoBehaviour
     }
 
     void Awake(){
-        active = true;
         playerPos = player.transform.position;
         // Facing left
         if (Input.GetAxis("Horizontal") < 0)
@@ -34,7 +32,7 @@ public class birdController : MonoBehaviour
         {
             birdPos = new Vector3(playerPos.x - xOffset,playerPos.y + yOffset,playerPos.z);
         }
-        
+        transform.position = Vector3.MoveTowards(transform.position,birdPos, 1000);
 
     }
 
@@ -57,25 +55,22 @@ public class birdController : MonoBehaviour
     }
 
     void FixedUpdate(){
-        if (active){
-            Debug.Log("ACTIVE");
-            playerPos = player.transform.position;
-            if (playerScript.isFlying)
-            {
-                anim.Play("Run", -1, 0f);
-                birdPos = new Vector3(playerPos.x,playerPos.y + 1.3f ,playerPos.z);
-                transform.position = Vector3.MoveTowards(transform.position,birdPos, birdSpeed * 2);
-            }
-            else{
-                if (Input.GetAxis("Horizontal") < 0)
-                    birdPos = new Vector3(playerPos.x + xOffset,playerPos.y + yOffset,playerPos.z);
-                else if (Input.GetAxis("Horizontal") > 0)
-                    birdPos = new Vector3(playerPos.x - xOffset,playerPos.y + yOffset,playerPos.z);
-                // else {
-                //     birdPos = new Vector3(playerPos.x,playerPos.y + 1.3f ,playerPos.z);
-                // }
-                transform.position = Vector3.MoveTowards(transform.position,birdPos, birdSpeed);
-            }
+        playerPos = player.transform.position;
+        if (playerScript.isFlying)
+        {
+            anim.Play("Run", -1, 0f);
+            birdPos = new Vector3(playerPos.x,playerPos.y + 1.3f ,playerPos.z);
+            transform.position = Vector3.MoveTowards(transform.position,birdPos, birdSpeed * 2);
+        }
+        else{
+            if (Input.GetAxis("Horizontal") < 0)
+                birdPos = new Vector3(playerPos.x + xOffset,playerPos.y + yOffset,playerPos.z);
+            else if (Input.GetAxis("Horizontal") > 0)
+                birdPos = new Vector3(playerPos.x - xOffset,playerPos.y + yOffset,playerPos.z);
+            // else {
+            //     birdPos = new Vector3(playerPos.x,playerPos.y + 1.3f ,playerPos.z);
+            // }
+            transform.position = Vector3.MoveTowards(transform.position,birdPos, birdSpeed);
         }
     }
 }
