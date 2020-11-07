@@ -103,7 +103,7 @@ public class PlayerMove : MonoBehaviour
             else{
                 if(canAirJump())
                 {
-                    rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
+                    rigidBody.AddForce(new Vector2(0f, jumpStrength/2), ForceMode2D.Impulse);
                     ++jumpCount;
                 }
                 jumpInput = false;

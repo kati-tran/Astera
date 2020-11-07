@@ -46,10 +46,4 @@ public class FallingLeaf : MonoBehaviour
         }
         current += 0.1f;
     }
-
-    private void OnTriggerEnter2D(Collider2D col){
-        if (col.gameObject.name == "leafbarrier"){
-            Object.Destroy(this.gameObject);
-        }
-    }
 }
