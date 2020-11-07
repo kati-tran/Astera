@@ -160,7 +160,7 @@ public class PlayerMove : MonoBehaviour
     }
 
     private void bird(){
-        if(canAirJump() && flightTime > 0 && Input.GetKey("space"))
+        if(jumpInput && flightTime > 0 && Input.GetKey("space") && !canJump())
             {
                 isFlying = true;
                 horizontalDrag = OGhdrag + flyDrag;
