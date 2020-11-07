@@ -46,4 +46,12 @@ public class FallingLeaf : MonoBehaviour
         }
         current += 0.1f;
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.tag == "Player"){
+            Object.Destroy(this.gameObject);
+        }
+        
+    }
 }

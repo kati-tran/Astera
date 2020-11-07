@@ -9,6 +9,7 @@ public class leafSpawner : MonoBehaviour
     public float spawnDelay = 5f;
     public float currentTime = 0f;
     public float offset = 1f;
+    public float leaflifetime = 12f;
     public GameObject leaf;
     // Start is called before the first frame update
     void Start()
@@ -23,6 +24,9 @@ public class leafSpawner : MonoBehaviour
         {
             GameObject obj = Instantiate(leaf) as GameObject;
             obj.transform.position = pos;
+            FallingLeaf fallingleaf = obj.GetComponent<FallingLeaf>();
+            fallingleaf.lifetime = leaflifetime;
+            pos.z = 0;
             currentTime = 0f;
         } else { currentTime += 0.1f; }
     }
