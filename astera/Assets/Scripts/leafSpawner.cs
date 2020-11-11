@@ -20,7 +20,10 @@ public class leafSpawner : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (currentTime >= spawnDelay+offset)
+        if (offset > 0f){
+            offset -= 0.1f;
+        }
+        else if (currentTime >= spawnDelay)
         {
             GameObject obj = Instantiate(leaf) as GameObject;
             obj.transform.position = pos;

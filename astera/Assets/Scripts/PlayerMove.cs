@@ -175,4 +175,13 @@ public class PlayerMove : MonoBehaviour
             flightTime = flightDuration;
         }
     }
+
+    void OnCollisionStay2D(Collision2D col){
+        if (col.gameObject.tag == "Slippery"){
+            // Facing Left
+            Vector3 force = transform.position - col.transform.position;
+            rigidBody.AddForce(new Vector2(force.x, -500f), ForceMode2D.Force);
+            
+        }
+    }
 }
