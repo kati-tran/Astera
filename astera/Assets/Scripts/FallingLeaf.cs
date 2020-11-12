@@ -24,8 +24,7 @@ public class FallingLeaf : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (current >= lifetime)
-        {
+        if (current >= lifetime){
             Object.Destroy(this.gameObject);
         }
         rb.velocity = new Vector2(0, -2);
