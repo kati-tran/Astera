@@ -2457,11 +2457,8 @@ MonoBehaviour:
   maxAirJumps: 0
   jumpLeniency: 5
   groundContactCollider: {fileID: 1942400551}
-  flightDuration: 4
-  flightStrength: 55
-  flyDrag: 1
+  birdObj: {fileID: 1856474103}
   isFlying: 0
-  birdobj: {fileID: 1856474103}
 --- !u!50 &585306521
 Rigidbody2D:
   serializedVersion: 4
@@ -3241,6 +3238,12 @@ PrefabInstance:
       propertyPath: spawnDelay
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 6905528537888466450, guid: 6a8167f9132110c49ac288228524d37b,
+        type: 3}
+      propertyPath: leaf
+      value: 
+      objectReference: {fileID: 522796831223438219, guid: 7278d905b6bc855408c46cc597dcda3d,
+        type: 3}
     - target: {fileID: 6905528537888466451, guid: 6a8167f9132110c49ac288228524d37b,
         type: 3}
       propertyPath: m_Name
@@ -12704,6 +12707,12 @@ PrefabInstance:
       propertyPath: spawnDelay
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 6905528537888466450, guid: 6a8167f9132110c49ac288228524d37b,
+        type: 3}
+      propertyPath: leaf
+      value: 
+      objectReference: {fileID: 522796831223438219, guid: 7278d905b6bc855408c46cc597dcda3d,
+        type: 3}
     - target: {fileID: 6905528537888466451, guid: 6a8167f9132110c49ac288228524d37b,
         type: 3}
       propertyPath: m_Name
@@ -13309,6 +13318,10 @@ MonoBehaviour:
   xOffset: 1.5
   yOffset: 2.5
   birdSpeed: 0.2
+  flightTime: 5
+  flightDuration: 5
+  flightStrength: 50
+  flyDrag: 1
 --- !u!1 &1860553242
 GameObject:
   m_ObjectHideFlags: 0
@@ -15583,6 +15596,12 @@ PrefabInstance:
       propertyPath: spawnDelay
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 6905528537888466450, guid: 6a8167f9132110c49ac288228524d37b,
+        type: 3}
+      propertyPath: leaf
+      value: 
+      objectReference: {fileID: 522796831223438219, guid: 7278d905b6bc855408c46cc597dcda3d,
+        type: 3}
     - target: {fileID: 6905528537888466451, guid: 6a8167f9132110c49ac288228524d37b,
         type: 3}
       propertyPath: m_Name

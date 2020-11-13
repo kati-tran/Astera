@@ -8,13 +8,18 @@ public class birdController : MonoBehaviour
     PlayerMove playerScript; 
     Animator anim;
 
+    bool facingRight;
     Vector3 playerPos;
     Vector3 birdPos;
     public float xOffset = 2;
     public float yOffset = 5;
+
     public float birdSpeed = 0.2f;
-    System.Random rnd = new System.Random();
-    bool facingRight;
+    
+    public float flightTime = 5f; 
+    public float flightDuration = 5f;
+    public float flightStrength = 20f;
+    public float flyDrag = 1f;
 
     void Start(){
         playerScript = player.GetComponent<PlayerMove>();
