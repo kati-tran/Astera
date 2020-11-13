@@ -1947,7 +1947,7 @@ PrefabInstance:
     - target: {fileID: 4206118913862291738, guid: 22e82e37709fde34fb65a2fd28fbfb05,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22e82e37709fde34fb65a2fd28fbfb05, type: 3}
@@ -2455,8 +2455,8 @@ MonoBehaviour:
   maxAirJumps: 0
   jumpLeniency: 5
   groundContactCollider: {fileID: 1942400551}
-  isFlying: 0
   birdObj: {fileID: 1856474103}
+  isFlying: 0
 --- !u!50 &585306521
 Rigidbody2D:
   serializedVersion: 4
