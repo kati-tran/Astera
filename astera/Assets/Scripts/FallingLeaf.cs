@@ -12,7 +12,7 @@ public class FallingLeaf : MonoBehaviour
     float left = 0f;
     float right = 0f;
 
-    float standTime = 3f;
+    public float standTime = 3f;
 
     Rigidbody2D rb;
     Transform tf;
