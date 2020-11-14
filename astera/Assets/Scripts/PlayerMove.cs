@@ -7,17 +7,17 @@ public class PlayerMove : MonoBehaviour
     //Configurable properties
     public float moveSpeed = 55f;
     public float jumpStrength = 33f;
+    public float dashStrength;
     public float stopSpeed = 0.5f; //Player will come to a compete stop when speed falls below this value
     public float horizontalDrag = 0.3f;
     public float verticalDrag = 0.1f;
     public int maxAirJumps = 0;
+    public int maxDashes = 1;
     public int jumpLeniency = 5;
     public Collider2D groundContactCollider;
     public float flightDuration = 5f;
     public float flightStrength = 20f;
     public float flyDrag = 1f;
-
-    
 
     //Set up during Start()
     Rigidbody2D rigidBody;
@@ -26,15 +26,20 @@ public class PlayerMove : MonoBehaviour
 
     //Variables
     int jumpCount = 0;
+    int dashCount = 0;
     int offGroundCount = 0;
     bool onGround;
     bool jumpInput = false;
+    bool dashInput = false;
     float flightTime = 5f; 
     float OGhdrag;
     public bool isFlying = false;
     public GameObject birdobj;
-    
+    public Spirit activeSpirit = Spirit.None;
+    Direction facing = Direction.Right;
 
+    public enum Spirit { None, Bird, Turtle, Fox };
+    public enum Direction { Left, Right }
 
     // Start is called before the first frame update
     void Start()
@@ -57,6 +62,11 @@ public class PlayerMove : MonoBehaviour
         {
             jumpInput = true;
         }
+
+        if(Input.GetButtonDown("Fire3"))
+        {
+            dashInput = true;
+        }
     }
 
     // Physics update
@@ -64,13 +74,16 @@ public class PlayerMove : MonoBehaviour
     {
         // changes 3d model rotation if player is moving left or right
         // Left
-        if (Input.GetAxis("Horizontal") < 0)
+        float horizInput = Input.GetAxis("Horizontal");
+        if (horizInput < 0 && facing == Direction.Right)
         {
+            facing = Direction.Left;
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         // right
-        else if (Input.GetAxis("Horizontal") > 0)
+        else if (horizInput > 0 && facing == Direction.Left)
         {
+            facing = Direction.Right;
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
@@ -90,6 +103,8 @@ public class PlayerMove : MonoBehaviour
                 jumpCount = 0;
             if (offGroundCount > 0)
                 offGroundCount = 0;
+            if (dashCount > 0)
+                dashCount = 0;
         }
         if(jumpInput)
         {
@@ -97,7 +112,7 @@ public class PlayerMove : MonoBehaviour
             {
                 rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
             }
-            if (birdobj.activeSelf){
+            if (activeSpirit == Spirit.Bird){
                 bird();
             }
             else{
@@ -124,6 +139,23 @@ public class PlayerMove : MonoBehaviour
             //     flightTime = flightDuration;
             // }
             // jumpInput = false;
+        }
+        if(dashInput)   //Handle fox dash
+        {
+            dashInput = false;
+            if (activeSpirit == Spirit.Fox)
+            {
+                float direction = facing == Direction.Right ? 1 : -1;
+                if (canJump())
+                {
+                    rigidBody.AddForce(new Vector2(direction * dashStrength * 100, 0f));
+                }
+                else if(canAirDash())
+                {
+                    rigidBody.AddForce(new Vector2(direction * dashStrength * 100, 0f));
+                    ++dashCount;
+                }
+            }
         }
 
         //Apply horizontal movement force
@@ -152,6 +184,11 @@ public class PlayerMove : MonoBehaviour
     private bool canAirJump()
     {
         return !canJump() && jumpCount < maxAirJumps;
+    }
+
+    private bool canAirDash()
+    {
+        return !canJump() && dashCount < maxDashes;
     }
 
     private Vector2 abs(Vector2 v)
