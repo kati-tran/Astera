@@ -13,6 +13,11 @@ public class PlayerMove : MonoBehaviour
     public int maxAirJumps = 0;
     public int jumpLeniency = 5;
     public Collider2D groundContactCollider;
+    public float flightDuration = 5f;
+    public float flightStrength = 20f;
+    public float flyDrag = 1f;
+
+    
 
     //Set up during Start()
     Rigidbody2D rigidBody;
@@ -24,13 +29,22 @@ public class PlayerMove : MonoBehaviour
     int offGroundCount = 0;
     bool onGround;
     bool jumpInput = false;
+    float flightTime = 5f; 
+    float OGhdrag;
+    public bool isFlying = false;
+    public GameObject birdobj;
+    
+
 
     // Start is called before the first frame update
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         groundFilter = new ContactFilter2D(); //{ layerMask = LayerMask.GetMask("Ground"), useLayerMask = true }; //not currently filtering
+        OGhdrag = horizontalDrag;
         anim = GetComponent<Animator>();
+
+
     }
 
     // Frame update
@@ -49,10 +63,12 @@ public class PlayerMove : MonoBehaviour
     void FixedUpdate()
     {
         // changes 3d model rotation if player is moving left or right
+        // Left
         if (Input.GetAxis("Horizontal") < 0)
         {
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
+        // right
         else if (Input.GetAxis("Horizontal") > 0)
         {
             transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -64,6 +80,12 @@ public class PlayerMove : MonoBehaviour
             ++offGroundCount;
         if (onGround)
         {
+            isFlying = false;
+            if ((float)horizontalDrag == (float)(OGhdrag + flyDrag))
+            {
+                horizontalDrag -= flyDrag;
+            }
+                
             if (jumpCount > 0)
                 jumpCount = 0;
             if (offGroundCount > 0)
@@ -75,12 +97,33 @@ public class PlayerMove : MonoBehaviour
             {
                 rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
             }
-            if(canAirJump())
-            {
-                rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
-                ++jumpCount;
+            if (birdobj.activeSelf){
+                bird();
             }
-            jumpInput = false;
+            else{
+                if(canAirJump())
+                {
+                    rigidBody.AddForce(new Vector2(0f, jumpStrength/2), ForceMode2D.Impulse);
+                    ++jumpCount;
+                }
+                jumpInput = false;
+            }
+                
+            // if(canAirJump() && flightTime > 0 && Input.GetKey("space"))
+            // {
+            //     // rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
+            //     // ++jumpCount;
+            //     rigidBody.AddForce(new Vector2(0f,flightStrength), ForceMode2D.Force);
+            //     flightTime -= 0.1f;
+            // }
+            // else {
+            //     jumpInput = false;
+            // }
+            // Reset the flight timer if on ground
+            // if (onGround){
+            //     flightTime = flightDuration;
+            // }
+            // jumpInput = false;
         }
 
         //Apply horizontal movement force
@@ -114,5 +157,31 @@ public class PlayerMove : MonoBehaviour
     private Vector2 abs(Vector2 v)
     {
         return new Vector2(System.Math.Abs(v.x), System.Math.Abs(v.y));
+    }
+
+    private void bird(){
+        if(jumpInput && flightTime > 0 && Input.GetKey("space") && !canJump())
+            {
+                isFlying = true;
+                horizontalDrag = OGhdrag + flyDrag;
+                rigidBody.AddForce(new Vector2(0f,flightStrength), ForceMode2D.Force);
+                flightTime -= 0.1f;
+            }
+            else {
+                jumpInput = false;
+                
+            }
+        if (onGround){
+            flightTime = flightDuration;
+        }
+    }
+
+    void OnCollisionStay2D(Collision2D col){
+        if (col.gameObject.tag == "Slippery"){
+            // Facing Left
+            Vector3 force = transform.position - col.transform.position;
+            rigidBody.AddForce(new Vector2(force.x, -500f), ForceMode2D.Force);
+            
+        }
     }
 }
