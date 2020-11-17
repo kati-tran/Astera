@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class fishSwim : MonoBehaviour
+public class fish : MonoBehaviour
 {
 	Rigidbody2D rb;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,15 +18,15 @@ public class fishSwim : MonoBehaviour
         
     }
 
-    void OnCollision2D (Collider2D col)
-    {
-    	if (col.gameObject.tag == "Ground"){
-    		
-    	}
-    }
-
-    void OnTriggerStay2D (Collider2D col)
+    void FixedUpdate()
     {
     	
     }
+
+    void OnCollision2D (Collider2D col)
+    {
+
+    }
+
+
 }

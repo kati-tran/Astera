@@ -64,7 +64,7 @@ public class waterPlayer : MonoBehaviour
     void OnTriggerEnter2D (Collider2D col)
          {
             if (col.gameObject.tag == "Water"){
-                Debug.Log("Entered at" + rb.transform.position.y);
+                //Debug.Log("Entered at" + rb.transform.position.y);
                 floatPosition = rb.transform.position.y;
                 rb.gravityScale = 0.1f;
                 rb.mass = 0.5f;
@@ -74,7 +74,7 @@ public class waterPlayer : MonoBehaviour
             }
 
             if (col.gameObject.tag == "Turtle"){
-                Debug.Log("TORTLE");
+                //Debug.Log("TORTLE");
                 turtle = true;
             }
          }

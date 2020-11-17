@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Ground
   - Platforms
+  - Water
+  - Turtle
   layers:
   - Default
   - TransparentFX
@@ -18,7 +20,7 @@ TagManager:
   - Ground
   - Player
   - Leaves
-  - 
+  - Post-Process
   - 
   - 
   - 
