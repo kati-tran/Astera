@@ -18,6 +18,7 @@ public class PlayerMove : MonoBehaviour
     public float flightDuration = 5f;
     public float flightStrength = 20f;
     public float flyDrag = 1f;
+    public float dashDrag = .1f;
 
     //Set up during Start()
     Rigidbody2D rigidBody;
@@ -140,23 +141,9 @@ public class PlayerMove : MonoBehaviour
             // }
             // jumpInput = false;
         }
-        if(dashInput)   //Handle fox dash
-        {
-            dashInput = false;
-            if (activeSpirit == Spirit.Fox)
-            {
-                float direction = facing == Direction.Right ? 1 : -1;
-                if (canJump())
-                {
-                    rigidBody.AddForce(new Vector2(direction * dashStrength * 100, 0f));
-                }
-                else if(canAirDash())
-                {
-                    rigidBody.AddForce(new Vector2(direction * dashStrength * 100, 0f));
-                    ++dashCount;
-                }
-            }
-        }
+
+        if (activeSpirit == Spirit.Fox)
+            fox();
 
         //Apply horizontal movement force
         if (Input.GetAxis("Horizontal") == 0)   //If no movement input
@@ -210,6 +197,30 @@ public class PlayerMove : MonoBehaviour
             }
         if (onGround){
             flightTime = flightDuration;
+        }
+    }
+
+    private void fox()
+    {
+        if(onGround)
+        {
+            horizontalDrag = OGhdrag;
+        }
+        if (dashInput)
+        {
+            dashInput = false;
+            float direction = facing == Direction.Right ? 1 : -1;
+            if (canJump())
+            {
+                horizontalDrag = dashDrag;
+                rigidBody.AddForce(new Vector2(direction * dashStrength * 100, 0f));
+            }
+            else if (canAirDash())
+            {
+                horizontalDrag = dashDrag;
+                rigidBody.AddForce(new Vector2(direction * dashStrength * 100, 0f));
+                ++dashCount;
+            }
         }
     }
 
