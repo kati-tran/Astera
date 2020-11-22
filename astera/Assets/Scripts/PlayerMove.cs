@@ -125,11 +125,7 @@ public class PlayerMove : MonoBehaviour
             {
                 rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
             }
-<<<<<<< HEAD
-            if (birdObj.activeSelf){
-=======
             if (activeSpirit == Spirit.Bird){
->>>>>>> origin
                 bird();
             }
             else{
