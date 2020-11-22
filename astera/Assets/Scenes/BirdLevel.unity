@@ -2148,7 +2148,9 @@ EdgeCollider2D:
   - {x: -0.6473579, y: 0.44779137}
   - {x: -0.44828865, y: 0.87644184}
   - {x: -0.06823042, y: 1.2453287}
-  - {x: -0.11785835, y: 1.6669079}
+  - {x: -0.11014676, y: 1.6637375}
+  - {x: 0.15330091, y: 1.7246362}
+  - {x: 0.2564883, y: 1.4766239}
 --- !u!4 &426101801 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 408956, guid: be320b6d231cacc4894038f2c3375674,
@@ -3618,7 +3620,9 @@ EdgeCollider2D:
   - {x: -0.16796365, y: -1.0124066}
   - {x: 0.121001184, y: -1.0016992}
   - {x: 0.33173114, y: -0.9340849}
-  - {x: 0.51163495, y: -0.8748258}
+  - {x: 0.5175527, y: -0.86751837}
+  - {x: 0.7947865, y: -0.76393515}
+  - {x: 0.5414323, y: -0.59365296}
 --- !u!23 &750989439
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -15436,7 +15440,7 @@ SkinnedMeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 5965d8cbd359b0944be235ed8080fe8c, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
