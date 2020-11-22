@@ -7,16 +7,18 @@ public class PlayerMove : MonoBehaviour
     //Configurable properties
     public float moveSpeed = 55f;
     public float jumpStrength = 33f;
+    public float dashStrength;
     public float stopSpeed = 0.5f; //Player will come to a compete stop when speed falls below this value
     public float horizontalDrag = 0.3f;
     public float verticalDrag = 0.1f;
     public int maxAirJumps = 0;
+    public int maxDashes = 1;
     public int jumpLeniency = 5;
     public Collider2D groundContactCollider;
 
-
     //Animal Scripts
     public GameObject birdObj;
+    public float dashDrag = .1f;
 
     //Set up during Start()
     Rigidbody2D rigidBody;
@@ -25,6 +27,7 @@ public class PlayerMove : MonoBehaviour
 
     //Variables
     int jumpCount = 0;
+    int dashCount = 0;
     int offGroundCount = 0;
     bool onGround;
     bool jumpInput = false;
@@ -37,7 +40,13 @@ public class PlayerMove : MonoBehaviour
     float flightStrength;
     float flyDrag;
     float flightTime; 
+    
+    bool dashInput = false;
+    public Spirit activeSpirit = Spirit.None;
+    Direction facing = Direction.Right;
 
+    public enum Spirit { None, Bird, Turtle, Fox };
+    public enum Direction { Left, Right }
 
     // Start is called before the first frame update
     void Start()
@@ -66,6 +75,11 @@ public class PlayerMove : MonoBehaviour
         {
             jumpInput = true;
         }
+
+        if(Input.GetButtonDown("Fire3"))
+        {
+            dashInput = true;
+        }
     }
 
     // Physics update
@@ -73,13 +87,16 @@ public class PlayerMove : MonoBehaviour
     {
         // changes 3d model rotation if player is moving left or right
         // Left
-        if (Input.GetAxis("Horizontal") < 0)
+        float horizInput = Input.GetAxis("Horizontal");
+        if (horizInput < 0 && facing == Direction.Right)
         {
+            facing = Direction.Left;
             transform.rotation = Quaternion.Euler(0, 180, 0);
         }
         // right
-        else if (Input.GetAxis("Horizontal") > 0)
+        else if (horizInput > 0 && facing == Direction.Left)
         {
+            facing = Direction.Right;
             transform.rotation = Quaternion.Euler(0, 0, 0);
         }
 
@@ -99,6 +116,8 @@ public class PlayerMove : MonoBehaviour
                 jumpCount = 0;
             if (offGroundCount > 0)
                 offGroundCount = 0;
+            if (dashCount > 0)
+                dashCount = 0;
         }
         if(jumpInput)
         {
@@ -106,7 +125,11 @@ public class PlayerMove : MonoBehaviour
             {
                 rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
             }
+<<<<<<< HEAD
             if (birdObj.activeSelf){
+=======
+            if (activeSpirit == Spirit.Bird){
+>>>>>>> origin
                 bird();
             }
             else{
@@ -118,6 +141,9 @@ public class PlayerMove : MonoBehaviour
                 jumpInput = false;
             }
         }
+
+        if (activeSpirit == Spirit.Fox)
+            fox();
 
         //Apply horizontal movement force
         if (Input.GetAxis("Horizontal") == 0)   //If no movement input
@@ -147,6 +173,11 @@ public class PlayerMove : MonoBehaviour
         return !canJump() && jumpCount < maxAirJumps;
     }
 
+    private bool canAirDash()
+    {
+        return !canJump() && dashCount < maxDashes;
+    }
+
     private Vector2 abs(Vector2 v)
     {
         return new Vector2(System.Math.Abs(v.x), System.Math.Abs(v.y));
@@ -166,6 +197,30 @@ public class PlayerMove : MonoBehaviour
             }
         if (onGround){
             birdObj.GetComponent<birdController>().flightTime = flightDuration;
+        }
+    }
+
+    private void fox()
+    {
+        if(onGround)
+        {
+            horizontalDrag = OGhdrag;
+        }
+        if (dashInput)
+        {
+            dashInput = false;
+            float direction = facing == Direction.Right ? 1 : -1;
+            if (canJump())
+            {
+                horizontalDrag = dashDrag;
+                rigidBody.AddForce(new Vector2(direction * dashStrength * 100, 0f));
+            }
+            else if (canAirDash())
+            {
+                horizontalDrag = dashDrag;
+                rigidBody.AddForce(new Vector2(direction * dashStrength * 100, 0f));
+                ++dashCount;
+            }
         }
     }
 
