@@ -31,12 +31,14 @@ public class TurtleScript : MonoBehaviour
     	if (col.gameObject.tag == "Turtle"){
     		found++;
     		if (found <= maxEscapes)
-    		{
-    			Destroy(col.gameObject);
+    		{	
+    			// add some kind of animation here
+    			// and a sound
+    			Destroy(col.transform.parent.gameObject);
     		}
     		else
     		{
-
+    			col.transform.parent.GetComponent<FollowPlayer>().enabled = true;
     		}
 
     	}
