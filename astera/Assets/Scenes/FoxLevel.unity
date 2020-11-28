@@ -2746,6 +2746,12 @@ PrefabInstance:
       propertyPath: activeSpirit
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 299861622992142227, guid: 1cb1179b5803eea48afd33ec179301d1,
+        type: 3}
+      propertyPath: birdObj
+      value: 
+      objectReference: {fileID: 8278015652844536616, guid: cd2a00ca162717642bc228d1b3e7b672,
+        type: 3}
     - target: {fileID: 299861623811751970, guid: 1cb1179b5803eea48afd33ec179301d1,
         type: 3}
       propertyPath: m_Name
