@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,9 +15,9 @@ public class PlayerMove : MonoBehaviour
     public int maxDashes = 1;
     public int jumpLeniency = 5;
     public Collider2D groundContactCollider;
-    public float flightDuration = 5f;
-    public float flightStrength = 20f;
-    public float flyDrag = 1f;
+
+    //Animal Scripts
+    public GameObject birdObj;
     public float dashDrag = .1f;
 
     //Set up during Start()
@@ -31,11 +31,17 @@ public class PlayerMove : MonoBehaviour
     int offGroundCount = 0;
     bool onGround;
     bool jumpInput = false;
-    bool dashInput = false;
-    float flightTime = 5f; 
-    float OGhdrag;
+    
     public bool isFlying = false;
-    public GameObject birdobj;
+
+    //Bird Variables
+    float OGhdrag;
+    float flightDuration;
+    float flightStrength;
+    float flyDrag;
+    float flightTime; 
+    
+    bool dashInput = false;
     public Spirit activeSpirit = Spirit.None;
     Direction facing = Direction.Right;
 
@@ -47,7 +53,13 @@ public class PlayerMove : MonoBehaviour
     {
         rigidBody = GetComponent<Rigidbody2D>();
         groundFilter = new ContactFilter2D(); //{ layerMask = LayerMask.GetMask("Ground"), useLayerMask = true }; //not currently filtering
+        
         OGhdrag = horizontalDrag;
+        flightDuration = birdObj.GetComponent<birdController>().flightDuration;
+        flightStrength = birdObj.GetComponent<birdController>().flightStrength;
+        flyDrag = birdObj.GetComponent<birdController>().flyDrag;
+        flightTime = birdObj.GetComponent<birdController>().flightTime;
+
         anim = GetComponent<Animator>();
 
 
@@ -124,22 +136,6 @@ public class PlayerMove : MonoBehaviour
                 }
                 jumpInput = false;
             }
-                
-            // if(canAirJump() && flightTime > 0 && Input.GetKey("space"))
-            // {
-            //     // rigidBody.AddForce(new Vector2(0f, jumpStrength), ForceMode2D.Impulse);
-            //     // ++jumpCount;
-            //     rigidBody.AddForce(new Vector2(0f,flightStrength), ForceMode2D.Force);
-            //     flightTime -= 0.1f;
-            // }
-            // else {
-            //     jumpInput = false;
-            // }
-            // Reset the flight timer if on ground
-            // if (onGround){
-            //     flightTime = flightDuration;
-            // }
-            // jumpInput = false;
         }
 
         if (activeSpirit == Spirit.Fox)
@@ -184,19 +180,19 @@ public class PlayerMove : MonoBehaviour
     }
 
     private void bird(){
-        if(jumpInput && flightTime > 0 && Input.GetKey("space") && !canJump())
+        if(jumpInput && birdObj.GetComponent<birdController>().flightTime > 0 && Input.GetKey("space") && !canJump())
             {
                 isFlying = true;
                 horizontalDrag = OGhdrag + flyDrag;
                 rigidBody.AddForce(new Vector2(0f,flightStrength), ForceMode2D.Force);
-                flightTime -= 0.1f;
+                birdObj.GetComponent<birdController>().flightTime -= 0.1f;
             }
             else {
                 jumpInput = false;
                 
             }
         if (onGround){
-            flightTime = flightDuration;
+            birdObj.GetComponent<birdController>().flightTime = flightDuration;
         }
     }
 
