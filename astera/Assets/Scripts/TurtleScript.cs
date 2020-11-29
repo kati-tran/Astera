@@ -5,7 +5,6 @@ using UnityEngine;
 public class TurtleScript : MonoBehaviour
 {
 	public int found = 0;	// how many times the player has found the turtle
-	public int maxEscapes;	// how many times the turtle can escape
 	Rigidbody2D rb;
 
     // Start is called before the first frame update
@@ -29,8 +28,7 @@ public class TurtleScript : MonoBehaviour
     void OnTriggerEnter2D (Collider2D col)
     {
     	if (col.gameObject.tag == "Turtle"){
-    		found++;
-    		if (found <= maxEscapes)
+    		if (col.gameObject.name != "lastTurtle")
     		{	
     			// add some kind of animation here
     			// and a sound

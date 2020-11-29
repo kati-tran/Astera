@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class waterPlayer : MonoBehaviour
 {
-
+    
 	Rigidbody2D rb;
     float floatPosition;            // where the cat should start floating
     public int floatForce;          //  how hard the cat bobs up and down
@@ -16,7 +16,7 @@ public class waterPlayer : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
         rb = GetComponent<Rigidbody2D>();
         underwater = false;
         turtle = false;
@@ -64,6 +64,8 @@ public class waterPlayer : MonoBehaviour
     void OnTriggerEnter2D (Collider2D col)
          {
             if (col.gameObject.tag == "Water"){
+
+                FindObjectOfType<AudioManager>().Play("splash");
                 //Debug.Log("Entered at" + rb.transform.position.y);
                 floatPosition = rb.transform.position.y;
                 rb.gravityScale = 0.1f;
@@ -82,6 +84,8 @@ public class waterPlayer : MonoBehaviour
     void OnTriggerExit2D (Collider2D col)
     {
          if (col.gameObject.tag == "Water"){
+           // FindObjectOfType<AudioManager>().Play("splash");
+
            rb.gravityScale = 4;
            rb.mass = 1;
            underwater = false;
