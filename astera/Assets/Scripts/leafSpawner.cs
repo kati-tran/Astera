@@ -27,7 +27,6 @@ public class leafSpawner : MonoBehaviour
         {
             GameObject obj = Instantiate(leaf) as GameObject;
             obj.transform.position = pos;
-            obj.transform.parent = tf;
             FallingLeaf fallingleaf = obj.GetComponent<FallingLeaf>();
             fallingleaf.lifetime = leaflifetime;
             pos.z = 0;

@@ -12,8 +12,6 @@ public class FallingLeaf : MonoBehaviour
     float left = 0f;
     float right = 0f;
 
-    public float standTime = 3f;
-
     Rigidbody2D rb;
     Transform tf;
 
@@ -26,7 +24,8 @@ public class FallingLeaf : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        if (current >= lifetime){
+        if (current >= lifetime)
+        {
             Object.Destroy(this.gameObject);
         }
         rb.velocity = new Vector2(0, -2);
@@ -48,16 +47,11 @@ public class FallingLeaf : MonoBehaviour
         current += 0.1f;
     }
 
-    void OnTriggerEnter2D(Collider2D col){
+    void OnTriggerEnter2D(Collider2D col)
+    {
         if (col.tag == "Player"){
             Object.Destroy(this.gameObject);
-        }   
-    }
-    
-    void OnCollisionStay2D(Collision2D col){
-        if (standTime <= 0f){
-            Object.Destroy(this.gameObject);
         }
-        standTime -= 0.1f;
+        
     }
 }
