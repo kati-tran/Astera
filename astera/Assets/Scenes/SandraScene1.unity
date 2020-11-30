@@ -20064,6 +20064,12 @@ PrefabInstance:
       propertyPath: birdobj
       value: 
       objectReference: {fileID: 1122394027}
+    - target: {fileID: 1000011905993168973, guid: 5135ccedfa869c74483e1ce654e18aea,
+        type: 3}
+      propertyPath: birdObj
+      value: 
+      objectReference: {fileID: 8278015652844536616, guid: cd2a00ca162717642bc228d1b3e7b672,
+        type: 3}
     - target: {fileID: 1399224873204785733, guid: 5135ccedfa869c74483e1ce654e18aea,
         type: 3}
       propertyPath: m_LocalPosition.x
