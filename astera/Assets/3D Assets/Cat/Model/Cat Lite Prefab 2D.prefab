@@ -82,7 +82,7 @@ GameObject:
   - component: {fileID: 299861623811751969}
   - component: {fileID: 299861623811751971}
   m_Layer: 0
-  m_Name: Cat Lite
+  m_Name: Cat Lite Prefab 2D
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -158,17 +158,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 55
   jumpStrength: 20
+  dashStrength: 10
   stopSpeed: 0.5
   horizontalDrag: 0.3
   verticalDrag: 0.1
   maxAirJumps: 0
+  maxDashes: 1
   jumpLeniency: 5
   groundContactCollider: {fileID: 299861623811751969}
-  flightDuration: 4
-  flightStrength: 55
-  flyDrag: 1
+  birdObj: {fileID: 0}
+  dashDrag: 0.1
   isFlying: 0
-  birdobj: {fileID: 0}
+  activeSpirit: 0
 --- !u!60 &299861623811751969
 PolygonCollider2D:
   m_ObjectHideFlags: 0
