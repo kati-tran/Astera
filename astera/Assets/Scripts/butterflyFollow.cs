@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class butterflyFollow : MonoBehaviour
 {
-    public GameObject[] objects1;
+    private GameObject[] objects1;
     private GameObject nearestTarget;
     private float distance;
     private float curDistance;
     private Vector3 pos;
+    public float butterflySpeed = 0.1f;
 
     // Start is called before the first frame update
     void Start(){
@@ -21,7 +22,7 @@ public class butterflyFollow : MonoBehaviour
 
     void FixedUpdate(){
         FindClosest();
-        transform.position = Vector3.MoveTowards(pos,nearestTarget.transform.position, 0.15f);
+        transform.position = Vector3.MoveTowards(pos,nearestTarget.transform.position, butterflySpeed);
         nearestTarget = null;
         distance = Mathf.Infinity;
     }

@@ -5407,7 +5407,7 @@ PrefabInstance:
     - target: {fileID: 7369223280160174483, guid: 18b8af6b3106d4940a5e534dc18c0344,
         type: 3}
       propertyPath: m_Name
-      value: SCharacter_Butterfly
+      value: ButterFly
       objectReference: {fileID: 0}
     - target: {fileID: 7369223280781302884, guid: 18b8af6b3106d4940a5e534dc18c0344,
         type: 3}
@@ -22947,7 +22947,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85ce1efe030c0a14e9defbe775b280a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objects1: []
+  butterflySpeed: 0.1
 --- !u!1001 &1203496173
 PrefabInstance:
   m_ObjectHideFlags: 0
