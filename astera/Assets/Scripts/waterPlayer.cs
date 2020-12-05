@@ -75,7 +75,7 @@ public class waterPlayer : MonoBehaviour
                
             }
 
-            if (col.gameObject.tag == "Turtle"){
+            if (col.gameObject.name == "lastTurtle"){
                 //Debug.Log("TORTLE");
                 turtle = true;
             }
