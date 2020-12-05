@@ -66,7 +66,6 @@ public class birdController : MonoBehaviour
         {
             anim.Play("Run", -1, 0f);
             birdPos = new Vector3(playerPos.x,playerPos.y + 1.3f ,playerPos.z);
-            // birdPos = new Vector3(playerPos.x + 1f,playerPos.y + 1.3f ,playerPos.z);
             transform.position = Vector3.MoveTowards(transform.position,birdPos, birdSpeed * 2);
         }
         else{

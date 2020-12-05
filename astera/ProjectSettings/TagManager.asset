@@ -10,6 +10,7 @@ TagManager:
   - Water
   - Turtle
   - Post Process
+  - butterMark
   layers:
   - Default
   - TransparentFX
