@@ -14,19 +14,14 @@ public class waterPlayer : MonoBehaviour
     public int swimForce;
     bool underwater;
 
+    public float lilipadForce;
+
     // Start is called before the first frame update
     void Start()
     {   
         rb = GetComponent<Rigidbody2D>();
         underwater = false;
-        turtle = false;
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-        
+        turtle = !false;
     }
 
     void FixedUpdate()
@@ -38,7 +33,7 @@ public class waterPlayer : MonoBehaviour
         }
 
         // when the cat goes above this point, push it down
-        else if(rb.transform.position.y < floatPosition - floatDifference) {
+        else if(rb.transform.position.y > floatPosition - floatDifference) {
             rb.AddForce(transform.up * -floatForce);
         }
 
@@ -47,7 +42,7 @@ public class waterPlayer : MonoBehaviour
 
             if (Input.GetAxis("Vertical") > 0)
             {
-                rb.AddForce(transform.up * swimForce);
+                rb.AddForce(transform.up * (swimForce * 2));
                 floatPosition = rb.transform.position.y;
                 floatDifference = .2f;
             }
@@ -67,7 +62,11 @@ public class waterPlayer : MonoBehaviour
 
                 FindObjectOfType<AudioManager>().Play("splash");
                 //Debug.Log("Entered at" + rb.transform.position.y);
-                floatPosition = rb.transform.position.y;
+                if (!turtle)
+                {
+                    floatPosition = rb.transform.position.y;
+                }
+
                 rb.gravityScale = 0.1f;
                 rb.mass = 0.5f;
                 underwater = true;
@@ -78,6 +77,11 @@ public class waterPlayer : MonoBehaviour
             if (col.gameObject.name == "lastTurtle"){
                 //Debug.Log("TORTLE");
                 turtle = true;
+            }
+
+            if (col.gameObject.name.StartsWith("SNature_CupedLil") && underwater)
+            {
+                transform.position = col.gameObject.transform.position;
             }
          }
 
