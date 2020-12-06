@@ -21,7 +21,7 @@ public class waterPlayer : MonoBehaviour
     {   
         rb = GetComponent<Rigidbody2D>();
         underwater = false;
-        turtle = !false;
+        turtle = false;
     }
 
     void FixedUpdate()
