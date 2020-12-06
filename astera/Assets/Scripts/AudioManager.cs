@@ -1,35 +1,51 @@
 ﻿using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using System.Collections;
+using System.Linq;
 
 
 public class AudioManager : MonoBehaviour
 {
 	public Sound[] sounds;
+	public int[] playNow; // index of the sound
 
 	void Awake()
 	{
 		foreach (Sound s in sounds)
 		{
-			s.source = gameObject.AddComponent<AudioSource>();
-			s.source.clip = s.clip;
+			if (s.playFrom == null)
+			{
+				s.source = gameObject.AddComponent<AudioSource>();
+			}
 
+			else
+			{
+				s.source = s.playFrom.AddComponent<AudioSource>();
+			}
+			s.source.clip = s.clip;
 			s.source.volume = s.volume;
 			s.source.pitch = s.pitch;
 			s.source.loop = s.loop;
 			s.source.spatialBlend = s.spatialBlend;
+			s.source.spread = s.spread;
+			s.source.minDistance = s.minDistance;
+			s.source.maxDistance = s.maxDistance;
 		}
 	}
 
 	void Start()
 	{
-		Play("BG_music");
-		//Play("birds");
+		foreach (int i in playNow)
+		{
+			sounds[i].source.Play();
+		}
+
 	}
 
 	public void Play (string name)
 	{
-		Debug.Log("playing "+ name);
+		//Debug.Log("playing "+ name);
 		Sound s = Array.Find(sounds, sound => sound.name == name);
 		if (s == null)
 		{
@@ -38,5 +54,48 @@ public class AudioManager : MonoBehaviour
 		}
 		s.source.Play();
 	}
+
+	public void Stop (string name)
+	{
+		Sound s = Array.Find(sounds, sound => sound.name == name);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + name + " not found!");
+			return;
+		}
+		s.source.Stop();
+	}
+
+	public void Fade(string name, float fadeSpeed)
+	{
+		StartCoroutine(FadeOut(name, fadeSpeed));
+	}
+
+	public IEnumerator FadeOut(string name, float fadeSpeed)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+ 		float currentVolume = s.source.volume;
+
+        // Check Music Volume and Fade Out
+        while (s.source.volume > 0.01f)
+        {
+            s.source.volume -= Time.deltaTime / fadeSpeed;//secondsToFadeOut;
+            yield return null;
+        }
+ 
+        // Make sure volume is set to 0
+        s.source.volume = 0;
+ 
+        // Stop Music
+        s.source.Stop();
+
+        s.source.volume = currentVolume;
+    }
+
+    public bool isPlaying(string name)
+    {
+    	Sound s = Array.Find(sounds, sound => sound.name == name);
+    	return s.source.isPlaying;
+    }
 
 }

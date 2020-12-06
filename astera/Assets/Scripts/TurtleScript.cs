@@ -10,9 +10,12 @@ public class TurtleScript : MonoBehaviour
     public ParticleSystem circle;
     public GameObject turtle;
 
+    bool playedAudio;
+
     // Start is called before the first frame update
     void Start()
     {
+        playedAudio = false;
     }
 
 
@@ -24,13 +27,22 @@ public class TurtleScript : MonoBehaviour
                 beam.Stop();
                 center.Stop();
                 circle.Stop();
-    			// add some kind of animation here
-    			// and a sound
+                if (!playedAudio)
+                { 
+                    FindObjectOfType<AudioManager>().Play("turtle");
+                    playedAudio = true;
+                }
     			Destroy(turtle);
     		}
     		else
     		{
     			GetComponent<FollowPlayer>().enabled = true;
+                if (!playedAudio)
+                {
+                    FindObjectOfType<AudioManager>().Play("lastTurtle");
+                    playedAudio = true;
+                }
+                    
     		}
 
     	}

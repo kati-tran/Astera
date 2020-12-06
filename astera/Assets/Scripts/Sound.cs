@@ -20,4 +20,15 @@ public class Sound
     [HideInInspector]
     public AudioSource source;
 
+    // for 3D
+    public GameObject playFrom;
+    public float spread;
+
+    [Range(0f, 100f)]
+    public float minDistance;
+    [Range(0f, 200f)]
+    public float maxDistance;
+
+
+
 }

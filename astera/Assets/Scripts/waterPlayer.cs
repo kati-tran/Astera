@@ -13,8 +13,11 @@ public class waterPlayer : MonoBehaviour
     public bool turtle;
     public int swimForce;
     bool underwater;
+    bool swimming;
+    bool swimmingLoop;
 
     public float lilipadForce;
+    AudioManager AudioManager;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +25,35 @@ public class waterPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         underwater = false;
         turtle = false;
+        AudioManager = FindObjectOfType<AudioManager>();
+        swimmingLoop = false;
+    }
+
+    void Update()
+    {
+        if(!swimmingLoop && swimming && !AudioManager.isPlaying("swim")){
+            AudioManager.Play("swim"); 
+            swimmingLoop = true;
+        }
+        else if (swimmingLoop && !swimming)
+        {
+            AudioManager.Fade("swim", .5f);
+            swimmingLoop = false;
+        }
+
+
     }
 
     void FixedUpdate()
     {
-        
+        if (underwater && (rb.velocity.x > .1 || rb.velocity.x < -.1) && (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow)))
+        {
+            swimming = true;
+        }
+        else
+        {
+            swimming = false;
+        }
         // when the cat sinks below this point, push it up
         if (rb.transform.position.y < floatPosition - floatDifference) {
             rb.AddForce(transform.up * floatForce);
@@ -53,6 +80,7 @@ public class waterPlayer : MonoBehaviour
                 floatDifference = .2f;
             }
         }
+
     	
     }
 
@@ -60,7 +88,7 @@ public class waterPlayer : MonoBehaviour
          {
             if (col.gameObject.tag == "Water"){
 
-                FindObjectOfType<AudioManager>().Play("splash");
+                AudioManager.Play("splash");
                 //Debug.Log("Entered at" + rb.transform.position.y);
                 if (!turtle)
                 {
