@@ -9,6 +9,7 @@ public class FoxScript : MonoBehaviour
     bool initAnimTargetReached = false;
     Vector3 initAnimTargetPos;
     float initAnimWaitStartTime;
+    bool facingLeft = true;
 
     public GameObject player;
     public float followDistance = 1;
@@ -84,9 +85,21 @@ public class FoxScript : MonoBehaviour
                     return;
 
                 if (dist.x > 0)
-                    transform.rotation = Quaternion.Euler(0, 90, 0);
+                {
+                    if (facingLeft)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 90, 0);
+                        facingLeft = false;
+                    }
+                }
                 else
-                    transform.rotation = Quaternion.Euler(0, -90, 0);
+                {
+                    if (!facingLeft)
+                    {
+                        transform.rotation = Quaternion.Euler(0, -90, 0);
+                        facingLeft = true;
+                    }
+                }
 
                 if (dist.magnitude <= followSpeed * Time.fixedDeltaTime)
                     transform.position += (Vector3)dist;

@@ -4266,8 +4266,8 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 1000011905993168973, guid: 5135ccedfa869c74483e1ce654e18aea,
         type: 3}
-      propertyPath: dashStrength
-      value: 10
+      propertyPath: jumpStrength
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 1399224873204785733, guid: 5135ccedfa869c74483e1ce654e18aea,
         type: 3}
@@ -4277,12 +4277,12 @@ PrefabInstance:
     - target: {fileID: 1399224873204785733, guid: 5135ccedfa869c74483e1ce654e18aea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1399224873204785733, guid: 5135ccedfa869c74483e1ce654e18aea,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.2
+      value: 1.3
       objectReference: {fileID: 0}
     - target: {fileID: 5811580808340404180, guid: 5135ccedfa869c74483e1ce654e18aea,
         type: 3}
@@ -5568,7 +5568,7 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 2.143097, y: 28.276718}
+  - {x: 2.206665, y: 28.380066}
   - {x: 11.5473175, y: 29.332806}
   - {x: 16.392822, y: 30.7056}
 --- !u!68 &904505419
@@ -5588,7 +5588,7 @@ EdgeCollider2D:
   m_EdgeRadius: 0
   m_Points:
   - {x: -16.848282, y: 28.00486}
-  - {x: -1.5541382, y: 25.331448}
+  - {x: -1.6148529, y: 25.465157}
 --- !u!1 &929243117
 GameObject:
   m_ObjectHideFlags: 0
@@ -5602,6 +5602,7 @@ GameObject:
   - component: {fileID: 929243118}
   - component: {fileID: 929243121}
   - component: {fileID: 929243122}
+  - component: {fileID: 929243123}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -5681,7 +5682,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 929243117}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0df1205f68dc2d24c873bb5317a671a4, type: 3}
   m_Name: 
@@ -5752,6 +5753,20 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &929243123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 929243117}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb959a309f4e5664f924a8f7ec2948bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1482165328}
+  offset: {x: 0, y: 0, z: -10}
 --- !u!1 &935427551
 GameObject:
   m_ObjectHideFlags: 0
@@ -7299,6 +7314,12 @@ PolygonCollider2D:
 --- !u!1 &1482165321 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1399224873204785756, guid: 5135ccedfa869c74483e1ce654e18aea,
+    type: 3}
+  m_PrefabInstance: {fileID: 747232964}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1482165328 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1399224873204785733, guid: 5135ccedfa869c74483e1ce654e18aea,
     type: 3}
   m_PrefabInstance: {fileID: 747232964}
   m_PrefabAsset: {fileID: 0}
