@@ -17,12 +17,18 @@ public class FoxScript : MonoBehaviour
     public float initAnimWalkSpeed = 1;
     public float initAnimWaitTime = 1;
 
+    Animator anim;
+    Rigidbody2D catRB;
+
     void Start()
     {
         if(player == null)
             throw new System.NullReferenceException("Player GameObject reference not set or invalid on Fox Script");
         if (followDistance <= 0 || followSpeed <= 0)
             throw new System.Exception("FoxScript fields followDistance and followSpeed must be positive and nonzero");
+
+        anim = GetComponent<Animator>();
+        catRB = player.GetComponent<PlayerMove>().rigidBody;
     }
 
     public void Activate()
@@ -37,6 +43,10 @@ public class FoxScript : MonoBehaviour
 
     void FixedUpdate()
     {
+          // sets animation speed for walking/running/idling
+        
+        anim.SetFloat("speed", Mathf.Abs(catRB.velocity.x));
+
         if(active)
         {
             Vector2 dist;
