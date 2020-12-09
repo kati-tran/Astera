@@ -20,7 +20,7 @@ public class GameManager : MonoBehaviour
 
 	IEnumerator LoadLevel(int levelIndex){
 		transition.SetTrigger("Start");
-		yield return new WaitForSeconds(1);
+		yield return new WaitForSeconds(1f);
 		SceneManager.LoadScene(levelIndex);
 	}
 
