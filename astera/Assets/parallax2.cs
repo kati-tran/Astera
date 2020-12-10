@@ -14,7 +14,8 @@ public class parallax2 : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        width = (GetComponent<SpriteRenderer>().bounds.extents.x - .1f) * 2 * numPanels ;
+        width = (GetComponent<SpriteRenderer>().bounds.extents.x - .05f) * 2 * numPanels;
+        print(width);
         originalPos = transform.position;
     }
 
