@@ -3730,7 +3730,7 @@ MonoBehaviour:
     maxDistance: 0
   - name: BG_music
     clip: {fileID: 8300000, guid: 352bacf74be51d341b3a56f7109381d2, type: 3}
-    volume: 0.4
+    volume: 0.69
     pitch: 1
     spatialBlend: 0
     loop: 1

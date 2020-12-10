@@ -5,6 +5,16 @@ using System.Collections;
 public class GameManager : MonoBehaviour
 {
 	public Animator transition;
+	private float delay;
+
+	public void Start()
+	{
+		delay = 1f;
+		if (AudioListener.volume == 0)
+        {
+            AudioListener.volume = 1;
+        }
+	}
 
 	public void loadScene(string scene)
 	{
@@ -14,11 +24,18 @@ public class GameManager : MonoBehaviour
 
 	public void loadNextScene()
 	{
-		// SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
 		StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex+1));
 	}
 
 	IEnumerator LoadLevel(int levelIndex){
+		float elapsedTime = 0;
+        float currentVolume = AudioListener.volume;
+ 
+        while(elapsedTime < delay) {
+            elapsedTime += Time.deltaTime;
+            AudioListener.volume = Mathf.Lerp(currentVolume, 0, elapsedTime / delay);
+            yield return null;
+        }
 		transition.SetTrigger("Start");
 		yield return new WaitForSeconds(1f);
 		SceneManager.LoadScene(levelIndex);
