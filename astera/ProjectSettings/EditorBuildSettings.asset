@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/FoxLevel.unity
     guid: 527ec0d7a8e2d6e41b0e7f0ff6333a1b
   - enabled: 1
+    path: Assets/Scenes/finalScene.unity
+    guid: 4b3ac3f1e6cb9a943bfbbacdb421e6a4
+  - enabled: 1
     path: Assets/Scenes/credits.unity
     guid: d9d570d96f1397b4a818e7f3d13044ad
   m_configObjects: {}
