@@ -9,6 +9,7 @@ public class FoxScript : MonoBehaviour
     bool initAnimTargetReached = false;
     Vector3 initAnimTargetPos;
     float initAnimWaitStartTime;
+    bool facingLeft = true;
 
     public GameObject player;
     public float followDistance = 1;
@@ -17,12 +18,18 @@ public class FoxScript : MonoBehaviour
     public float initAnimWalkSpeed = 1;
     public float initAnimWaitTime = 1;
 
+    Animator anim;
+    Rigidbody2D catRB;
+
     void Start()
     {
         if(player == null)
             throw new System.NullReferenceException("Player GameObject reference not set or invalid on Fox Script");
         if (followDistance <= 0 || followSpeed <= 0)
             throw new System.Exception("FoxScript fields followDistance and followSpeed must be positive and nonzero");
+
+        anim = GetComponent<Animator>();
+        catRB = player.GetComponent<PlayerMove>().rigidBody;
     }
 
     public void Activate()
@@ -37,6 +44,10 @@ public class FoxScript : MonoBehaviour
 
     void FixedUpdate()
     {
+          // sets animation speed for walking/running/idling
+        
+        anim.SetFloat("speed", Mathf.Abs(catRB.velocity.x));
+
         if(active)
         {
             Vector2 dist;
@@ -74,9 +85,21 @@ public class FoxScript : MonoBehaviour
                     return;
 
                 if (dist.x > 0)
-                    transform.rotation = Quaternion.Euler(0, 90, 0);
+                {
+                    if (facingLeft)
+                    {
+                        transform.rotation = Quaternion.Euler(0, 90, 0);
+                        facingLeft = false;
+                    }
+                }
                 else
-                    transform.rotation = Quaternion.Euler(0, -90, 0);
+                {
+                    if (!facingLeft)
+                    {
+                        transform.rotation = Quaternion.Euler(0, -90, 0);
+                        facingLeft = true;
+                    }
+                }
 
                 if (dist.magnitude <= followSpeed * Time.fixedDeltaTime)
                     transform.position += (Vector3)dist;

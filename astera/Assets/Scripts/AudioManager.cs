@@ -38,7 +38,8 @@ public class AudioManager : MonoBehaviour
 	{
 		foreach (int i in playNow)
 		{
-			sounds[i].source.Play();
+			this.fadeIn(sounds[i].name, 1f);
+			//this.Play(sounds[i].name);
 		}
 
 	}
@@ -66,7 +67,7 @@ public class AudioManager : MonoBehaviour
 		s.source.Stop();
 	}
 
-	public void Fade(string name, float fadeSpeed)
+	public void fadeOut(string name, float fadeSpeed)
 	{
 		StartCoroutine(FadeOut(name, fadeSpeed));
 	}
@@ -89,8 +90,29 @@ public class AudioManager : MonoBehaviour
         // Stop Music
         s.source.Stop();
 
-        s.source.volume = currentVolume;
+        //s.source.volume = currentVolume;
     }
+
+    public void fadeIn(string name, float fadeSpeed)
+    {
+    	StartCoroutine(FadeIn(name, fadeSpeed));
+    }
+
+    public IEnumerator FadeIn(string name, float fadeSpeed)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        float currentVolume = s.source.volume;
+        s.source.volume = 0;
+        s.source.Play();
+        while(s.source.volume < currentVolume)
+        {
+            s.source.volume = Mathf.Lerp(s.source.volume, currentVolume, fadeSpeed * Time.deltaTime);
+            yield return currentVolume;
+        }
+        s.source.volume = currentVolume;
+
+    }
+
 
     public bool isPlaying(string name)
     {

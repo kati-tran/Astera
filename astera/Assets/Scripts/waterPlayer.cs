@@ -37,7 +37,7 @@ public class waterPlayer : MonoBehaviour
         }
         else if (swimmingLoop && !swimming)
         {
-            AudioManager.Fade("swim", .5f);
+            AudioManager.fadeOut("swim", .5f);
             swimmingLoop = false;
         }
 

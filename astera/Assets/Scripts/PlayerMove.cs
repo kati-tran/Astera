@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
     public float dashDrag = .1f;
 
     //Set up during Start()
-    Rigidbody2D rigidBody;
+    public Rigidbody2D rigidBody;
     ContactFilter2D groundFilter;
     Animator anim;
 
