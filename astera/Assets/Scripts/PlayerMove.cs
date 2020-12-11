@@ -1,6 +1,7 @@
 ﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -85,6 +86,9 @@ public class PlayerMove : MonoBehaviour
     // Physics update
     void FixedUpdate()
     {
+        if (Input.GetKey("r")){
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
         // changes 3d model rotation if player is moving left or right
         // Left
         float horizInput = Input.GetAxis("Horizontal");
