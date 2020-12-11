@@ -508,7 +508,6 @@ GameObject:
   - component: {fileID: 7252253084631940797}
   - component: {fileID: 7252253084631940799}
   - component: {fileID: 7252253084631940796}
-  - component: {fileID: 5297869936207769361}
   m_Layer: 0
   m_Name: Center
   m_TagString: Untagged
@@ -5252,20 +5251,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &5297869936207769361
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7252253084631940738}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb959a309f4e5664f924a8f7ec2948bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 7252253085621248663}
-  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &7252253084670936092
 GameObject:
   m_ObjectHideFlags: 0
@@ -5577,7 +5562,6 @@ GameObject:
   - component: {fileID: 7252253085176922802}
   - component: {fileID: 7252253085176922796}
   - component: {fileID: 7252253085176922797}
-  - component: {fileID: 317697569956088103}
   m_Layer: 0
   m_Name: Beam
   m_TagString: Untagged
@@ -10321,20 +10305,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &317697569956088103
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7252253085176922803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb959a309f4e5664f924a8f7ec2948bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 7252253085621248663}
-  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &7252253085180299942
 GameObject:
   m_ObjectHideFlags: 0
@@ -10346,7 +10316,6 @@ GameObject:
   - component: {fileID: 7252253085180299937}
   - component: {fileID: 7252253085180299939}
   - component: {fileID: 7252253085180299936}
-  - component: {fileID: 8026175600806350199}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -15090,20 +15059,6 @@ ParticleSystemRenderer:
   m_Mesh2: {fileID: 0}
   m_Mesh3: {fileID: 0}
   m_MaskInteraction: 0
---- !u!114 &8026175600806350199
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7252253085180299942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb959a309f4e5664f924a8f7ec2948bb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 7252253085621248663}
-  offset: {x: 0, y: 0, z: 0}
 --- !u!1 &7252253085208762453
 GameObject:
   m_ObjectHideFlags: 0
@@ -15238,7 +15193,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7252253085621248663}
   - component: {fileID: 7252253085621248657}
-  - component: {fileID: 1872704385820980833}
   m_Layer: 0
   m_Name: SCharacter_Turtle
   m_TagString: Turtle
@@ -15281,19 +15235,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &1872704385820980833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7252253085621248660}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 85ce1efe030c0a14e9defbe775b280a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  butterflySpeed: 0.7
 --- !u!1 &7252253085666499166
 GameObject:
   m_ObjectHideFlags: 0
