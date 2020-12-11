@@ -340,7 +340,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 12800000, guid: 6051e4c8f2dfc4545b951feebc26f7b1, type: 3}
-    m_FontSize: 30
+    m_FontSize: 20
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -351,13 +351,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '[Name]
-
-    [Name]
-
-    [Name]
-
-    [Name]'
+  m_Text: "Programming / Design\n\tShawn Agustin\n\tKasen Chaque\n\tSandra Soto\n\tKati
+    Tran\n\tWeixuan Tan\t\n\nWebdev / Marketing\n\tYingyan Wu\n"
 --- !u!222 &550497605
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -377,6 +372,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fade (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822591153239274695, guid: ced2187fb4fb4d74bb4fb0dbaa195afa,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6822591153239274698, guid: ced2187fb4fb4d74bb4fb0dbaa195afa,
         type: 3}
@@ -519,7 +519,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -3.4, y: 127.8}
+  m_AnchoredPosition: {x: -3.4, y: 181}
   m_SizeDelta: {x: 272.8974, y: 65.60504}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &700383726
