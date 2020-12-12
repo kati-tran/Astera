@@ -5,6 +5,9 @@ using UnityEngine;
 public class TurtleScript : MonoBehaviour
 {
 
+    public ParticleSystem beam;
+    public ParticleSystem center;
+    public ParticleSystem circle;
     public GameObject turtle;
 
     bool playedAudio;
@@ -19,22 +22,21 @@ public class TurtleScript : MonoBehaviour
     void OnTriggerEnter2D (Collider2D col)
     {
     	if (col.gameObject.tag == "Player"){
-    		if (gameObject.name != "lastTurtle" && gameObject.name != "turtleStop" )
+    		if (gameObject.name != "lastTurtle")
     		{	
+                beam.Stop();
+                center.Stop();
+                circle.Stop();
                 if (!playedAudio)
                 { 
                     FindObjectOfType<AudioManager>().Play("turtle");
                     playedAudio = true;
                 }
-    			//Destroy(turtle);
+    			Destroy(turtle);
     		}
-            else if (gameObject.name == "turtleStop")
-            {
-                turtle.GetComponent<butterflyFollow>().enabled = false;
-            }
     		else
     		{
-    			turtle.GetComponent<FollowPlayer>().enabled = true;
+    			GetComponent<FollowPlayer>().enabled = true;
                 if (!playedAudio)
                 {
                     FindObjectOfType<AudioManager>().Play("lastTurtle");
