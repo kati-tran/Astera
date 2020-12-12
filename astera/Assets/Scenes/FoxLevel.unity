@@ -477,7 +477,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 56568564}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1.5, y: 1.22, z: 1}
+  m_LocalPosition: {x: -2.33, y: 1.22, z: 1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 642291036}
@@ -500,8 +500,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: 7.283703, y: 8.573737}
-  - {x: 3.7553566, y: 8.322338}
+  - {x: 7.0691934, y: 8.540735}
+  - {x: 3.0705063, y: 8.318548}
   - {x: 0.7570374, y: 8.408806}
 --- !u!4 &57370350 stripped
 Transform:
@@ -536,10 +536,10 @@ WindZone:
   m_Enabled: 1
   m_Mode: 0
   m_Radius: 20
-  m_WindMain: 1
+  m_WindMain: 2
   m_WindTurbulence: 1
-  m_WindPulseMagnitude: 0.5
-  m_WindPulseFrequency: 0.01
+  m_WindPulseMagnitude: 1
+  m_WindPulseFrequency: 0.1
 --- !u!4 &58767673
 Transform:
   m_ObjectHideFlags: 0
@@ -1007,7 +1007,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 148523987}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -49.95, y: -10, z: 97}
+  m_LocalPosition: {x: -49.9, y: -10, z: 97}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children: []
   m_Father: {fileID: 524164042}
@@ -4398,7 +4398,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fac474c4c5beec34092d222f552511ff,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 55.62
+      value: 56.04
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fac474c4c5beec34092d222f552511ff,
         type: 3}
@@ -4408,7 +4408,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fac474c4c5beec34092d222f552511ff,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.01
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fac474c4c5beec34092d222f552511ff,
         type: 3}
@@ -4808,7 +4808,7 @@ Animator:
   m_GameObject: {fileID: 585764813}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: fac474c4c5beec34092d222f552511ff, type: 3}
-  m_Controller: {fileID: 9100000, guid: b5f47b9c767a4c44d8bc3944806cf8b9, type: 2}
+  m_Controller: {fileID: 9100000, guid: d43a9a67135c7294a881d83866f45ef0, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -5909,12 +5909,12 @@ PrefabInstance:
     - target: {fileID: 1399224873204785733, guid: 5135ccedfa869c74483e1ce654e18aea,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.64
+      value: 1.99
       objectReference: {fileID: 0}
     - target: {fileID: 1399224873204785733, guid: 5135ccedfa869c74483e1ce654e18aea,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.87
+      value: -0.68
       objectReference: {fileID: 0}
     - target: {fileID: 1399224873204785756, guid: 5135ccedfa869c74483e1ce654e18aea,
         type: 3}
@@ -7347,7 +7347,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 15
+  orthographic size: 10
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -7468,7 +7468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1482165328}
-  offset: {x: 0, y: 5, z: -30}
+  offset: {x: 2, y: 1, z: -30}
 --- !u!1 &935427551
 GameObject:
   m_ObjectHideFlags: 0
@@ -8893,6 +8893,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1200512398}
   - component: {fileID: 1200512397}
+  - component: {fileID: 1200512399}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -8915,10 +8916,32 @@ MonoBehaviour:
   sounds:
   - name: Music
     clip: {fileID: 8300000, guid: 6d21408b5e2dd254f926d71b533a83cb, type: 3}
-    volume: 1
+    volume: 0.502
     pitch: 1
     spatialBlend: 0
     loop: 1
+    source: {fileID: 0}
+    playFrom: {fileID: 0}
+    spread: 0
+    minDistance: 0
+    maxDistance: 0
+  - name: Wind
+    clip: {fileID: 8300000, guid: 2c693d3266d633c41a4be15577d4f1ff, type: 3}
+    volume: 0.716
+    pitch: 1
+    spatialBlend: 0
+    loop: 1
+    source: {fileID: 0}
+    playFrom: {fileID: 0}
+    spread: 0
+    minDistance: 0
+    maxDistance: 0
+  - name: FoxCollect
+    clip: {fileID: 8300000, guid: fad583a7887366241ad592d7f8335a28, type: 3}
+    volume: 0.716
+    pitch: 1
+    spatialBlend: 0
+    loop: 0
     source: {fileID: 0}
     playFrom: {fileID: 0}
     spread: 0
@@ -8939,6 +8962,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1200512399
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1200512396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bf6daa4306613c41b2af27067c6575a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 1482165321}
 --- !u!1001 &1200754146
 PrefabInstance:
   m_ObjectHideFlags: 0

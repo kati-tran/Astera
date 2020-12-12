@@ -67,12 +67,12 @@ public class AudioManager : MonoBehaviour
 		s.source.Stop();
 	}
 
-	public void fadeOut(string name, float fadeSpeed)
+	public void fadeOut(string name, float fadeSpeed, bool resetVolume = false)
 	{
-		StartCoroutine(FadeOut(name, fadeSpeed));
+		StartCoroutine(FadeOut(name, fadeSpeed, resetVolume));
 	}
 
-	public IEnumerator FadeOut(string name, float fadeSpeed)
+	public IEnumerator FadeOut(string name, float fadeSpeed, bool resetVolume)
     {
         Sound s = Array.Find(sounds, sound => sound.name == name);
  		float currentVolume = s.source.volume;
@@ -84,13 +84,14 @@ public class AudioManager : MonoBehaviour
             yield return null;
         }
  
-        // Make sure volume is set to 0
-        s.source.volume = 0;
- 
         // Stop Music
         s.source.Stop();
 
-        //s.source.volume = currentVolume;
+        // Reset volume or set to 0
+        if(resetVolume)
+            s.source.volume = currentVolume;
+        else
+            s.source.volume = 0;
     }
 
     public void fadeIn(string name, float fadeSpeed)
@@ -106,11 +107,10 @@ public class AudioManager : MonoBehaviour
         s.source.Play();
         while(s.source.volume < currentVolume)
         {
-            s.source.volume = Mathf.Lerp(s.source.volume, currentVolume, fadeSpeed * Time.deltaTime);
-            yield return currentVolume;
+            s.source.volume += Time.deltaTime / fadeSpeed;
+            yield return null;
         }
         s.source.volume = currentVolume;
-
     }
 
 

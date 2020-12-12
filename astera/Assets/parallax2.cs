@@ -15,7 +15,6 @@ public class parallax2 : MonoBehaviour
     void Start()
     {
         width = (GetComponent<SpriteRenderer>().bounds.extents.x - .05f) * 2 * numPanels;
-        print(width);
         originalPos = transform.position;
     }
 
