@@ -8,18 +8,20 @@ public class PlayerMove : MonoBehaviour
     //Configurable properties
     public float moveSpeed = 55f;
     public float jumpStrength = 33f;
-    public float dashStrength;
     public float stopSpeed = 0.5f; //Player will come to a compete stop when speed falls below this value
     public float horizontalDrag = 0.3f;
     public float verticalDrag = 0.1f;
     public int maxAirJumps = 0;
-    public int maxDashes = 1;
     public int jumpLeniency = 5;
     public Collider2D groundContactCollider;
 
     //Animal Scripts
     public GameObject birdObj;
     public float dashDrag = .1f;
+    public float dashStrength;
+    public int maxDashes = 1;
+    public float dashLength = .5f;
+    public float dashCooldown = 1f;
 
     //Set up during Start()
     public Rigidbody2D rigidBody;
@@ -32,17 +34,20 @@ public class PlayerMove : MonoBehaviour
     int offGroundCount = 0;
     bool onGround;
     bool jumpInput = false;
-    
-    public bool isFlying = false;
 
     //Bird Variables
     float OGhdrag;
     float flightDuration;
     float flightStrength;
     float flyDrag;
-    float flightTime; 
-    
+    float flightTime;
+
+    public bool isFlying = false;
+
+    //Fox variables
+    float lastDashTime;
     bool dashInput = false;
+
     public Spirit activeSpirit = Spirit.None;
     Direction facing = Direction.Right;
 
@@ -144,6 +149,8 @@ public class PlayerMove : MonoBehaviour
 
         if (activeSpirit == Spirit.Fox)
             fox();
+        else if (dashInput)
+            dashInput = false;
 
         //Apply horizontal movement force
         if (Input.GetAxis("Horizontal") == 0)   //If no movement input
@@ -202,24 +209,36 @@ public class PlayerMove : MonoBehaviour
 
     private void fox()
     {
-        if(onGround)
+        void dash(float direction)
+        {
+            horizontalDrag = dashDrag;
+            rigidBody.AddForce(new Vector2(direction * dashStrength * 100, 0f));
+            FindObjectOfType<AudioManager>().Play("Dash");
+            ParticleSystem[] particleSystems = gameObject.GetComponentsInChildren<ParticleSystem>();
+            foreach(ParticleSystem particle in particleSystems)
+                particle.Play();
+            lastDashTime = Time.fixedTime;
+        }
+        float now = Time.fixedTime;
+        if (horizontalDrag != OGhdrag && now - lastDashTime >= .5)
         {
             horizontalDrag = OGhdrag;
         }
         if (dashInput)
         {
             dashInput = false;
-            float direction = facing == Direction.Right ? 1 : -1;
-            if (canJump())
+            if(now - lastDashTime > dashCooldown)
             {
-                horizontalDrag = dashDrag;
-                rigidBody.AddForce(new Vector2(direction * dashStrength * 100, 0f));
-            }
-            else if (canAirDash())
-            {
-                horizontalDrag = dashDrag;
-                rigidBody.AddForce(new Vector2(direction * dashStrength * 100, 0f));
-                ++dashCount;
+                float direction = facing == Direction.Right ? 1 : -1;
+                if (canJump())
+                {
+                    dash(direction);
+                }
+                else if (canAirDash())
+                {
+                    dash(direction);
+                    ++dashCount;
+                }
             }
         }
     }
