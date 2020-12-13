@@ -115,7 +115,7 @@ public class waterPlayer : MonoBehaviour
 
             if (col.gameObject.name.StartsWith("SNature_CupedLil") && underwater)
             {
-                transform.position = col.gameObject.transform.position;
+                transform.position = col.gameObject.transform.position + new Vector3(0f,0.5f,0f);
             }
          }
 
