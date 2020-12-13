@@ -3419,10 +3419,10 @@ MonoBehaviour:
     maxDistance: 0
   - name: swim
     clip: {fileID: 8300000, guid: 5c1c1608e4e83314d8ae9a51cf197106, type: 3}
-    volume: 0.426
+    volume: 0.612
     pitch: 1
     spatialBlend: 0
-    loop: 1
+    loop: 0
     source: {fileID: 0}
     playFrom: {fileID: 0}
     spread: 0
