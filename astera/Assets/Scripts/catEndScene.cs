@@ -47,7 +47,6 @@ public class catEndScene : MonoBehaviour
     	Debug.Log(col.gameObject.name);
     	if (col.gameObject.tag == "Player" && !ran)
     	{
-    		Debug.Log("aaa");
     		anim.SetBool("run", false);
     		GetComponent<PlayerMove>().enabled = true;
     		GetComponent<travelTo>().enabled = false;

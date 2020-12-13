@@ -4219,7 +4219,7 @@ Transform:
   - {fileID: 1349897864}
   - {fileID: 1889913203}
   m_Father: {fileID: 0}
-  m_RootOrder: 32
+  m_RootOrder: 33
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &198717302
 MonoBehaviour:
@@ -8376,6 +8376,125 @@ Transform:
   m_Father: {fileID: 1093271150}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1001 &360422054
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2207241914021838562, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241914186124285, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.30588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241914186124285, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241914186124285, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.6039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241914186124285, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915346307620, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_Name
+      value: gameMenu
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915346307621, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 83.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915346307621, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -9.46
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915346307621, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915346307621, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915346307621, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915346307621, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915346307621, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915346307621, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 31
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915346307621, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915346307621, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915346307621, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915622321973, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.30588236
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915622321973, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.29411766
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915622321973, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.6039216
+      objectReference: {fileID: 0}
+    - target: {fileID: 2207241915622321973, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 0.57254905
+      objectReference: {fileID: 0}
+    - target: {fileID: 3266426938131802103, guid: 307948cea83d61442b18aecd554a8af8,
+        type: 3}
+      propertyPath: transition
+      value: 
+      objectReference: {fileID: 1386515227}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 307948cea83d61442b18aecd554a8af8, type: 3}
 --- !u!1001 &366157960
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12250,16 +12369,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 55
   jumpStrength: 20
-  dashStrength: 0
   stopSpeed: 0.5
   horizontalDrag: 0.3
   verticalDrag: 0.1
   maxAirJumps: 0
-  maxDashes: 1
   jumpLeniency: 5
   groundContactCollider: {fileID: 1942400551}
   birdObj: {fileID: 4206118913437787642}
   dashDrag: 0.1
+  dashStrength: 0
+  maxDashes: 1
+  dashLength: 0.5
+  dashCooldown: 1
   rigidBody: {fileID: 0}
   isFlying: 0
   activeSpirit: 0
@@ -44005,7 +44126,7 @@ PrefabInstance:
     - target: {fileID: 1621664152035289713, guid: 992d80eb1a5abe140a354c81ac94d6e7,
         type: 3}
       propertyPath: m_RootOrder
-      value: 31
+      value: 32
       objectReference: {fileID: 0}
     - target: {fileID: 1621664152035289713, guid: 992d80eb1a5abe140a354c81ac94d6e7,
         type: 3}
@@ -44655,7 +44776,7 @@ PrefabInstance:
     - target: {fileID: 6822591153239274698, guid: ced2187fb4fb4d74bb4fb0dbaa195afa,
         type: 3}
       propertyPath: m_RootOrder
-      value: 33
+      value: 34
       objectReference: {fileID: 0}
     - target: {fileID: 6822591153239274698, guid: ced2187fb4fb4d74bb4fb0dbaa195afa,
         type: 3}
