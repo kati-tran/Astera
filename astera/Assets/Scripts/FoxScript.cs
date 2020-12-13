@@ -19,7 +19,6 @@ public class FoxScript : MonoBehaviour
     public float initAnimWaitTime = 1;
 
     Animator anim;
-    Rigidbody2D catRB;
 
     void Start()
     {
@@ -29,7 +28,6 @@ public class FoxScript : MonoBehaviour
             throw new System.Exception("FoxScript fields followDistance and followSpeed must be positive and nonzero");
 
         anim = GetComponent<Animator>();
-        catRB = player.GetComponent<PlayerMove>().rigidBody;
     }
 
     public void Activate()
@@ -39,35 +37,37 @@ public class FoxScript : MonoBehaviour
             active = true;
             initialAnimation = true;
             initAnimTargetPos = transform.position + new Vector3(-7, 0);
+            FindObjectOfType<AudioManager>().Play("FoxCollect");
         }
     }
 
-    void FixedUpdate()
+    void Update()
     {
-          // sets animation speed for walking/running/idling
-        
-        anim.SetFloat("speed", Mathf.Abs(catRB.velocity.x));
-
         if(active)
         {
             Vector2 dist;
-            if(initialAnimation)
+
+            // sets animation speed for walking/running/idling
+            float speed = 0;
+
+            if (initialAnimation)
             {
                 if(!initAnimTargetReached)
                 {
                     dist = initAnimTargetPos - transform.position;
-                    if (dist.magnitude < followSpeed * Time.fixedDeltaTime)
+                    if (dist.magnitude < followSpeed * Time.deltaTime)
                     {
                         initAnimTargetReached = true;
-                        initAnimWaitStartTime = Time.fixedTime;
+                        initAnimWaitStartTime = Time.time;
                         transform.position = new Vector3(initAnimTargetPos.x, initAnimTargetPos.y, -6);
                     }
                     else
                     {
-                        transform.position += (Vector3)dist.normalized * (initAnimWalkSpeed * Time.fixedDeltaTime);
+                        speed = initAnimWalkSpeed;
+                        transform.position += (Vector3)dist.normalized * (initAnimWalkSpeed * Time.deltaTime);
                     }
                 }
-                else if(Time.fixedTime - initAnimWaitStartTime >= initAnimWaitTime)
+                else if(Time.time - initAnimWaitStartTime >= initAnimWaitTime)
                 {
                     initialAnimation = false;
                 }
@@ -81,31 +81,38 @@ public class FoxScript : MonoBehaviour
                 else
                     dist.x -= followDistance * Mathf.Sign(dist.x);
 
-                if(dist.magnitude < 0.1)
-                    return;
-
-                if (dist.x > 0)
+                if (dist.magnitude >= 0.1)
                 {
-                    if (facingLeft)
+                    if (dist.x > 0)
                     {
-                        transform.rotation = Quaternion.Euler(0, 90, 0);
-                        facingLeft = false;
+                        if (facingLeft)
+                        {
+                            transform.rotation = Quaternion.Euler(0, 90, 0);
+                            facingLeft = false;
+                        }
+                    }
+                    else
+                    {
+                        if (!facingLeft)
+                        {
+                            transform.rotation = Quaternion.Euler(0, -90, 0);
+                            facingLeft = true;
+                        }
+                    }
+
+                    if (dist.magnitude <= followSpeed * Time.deltaTime)
+                    {
+                        speed = dist.magnitude / Time.deltaTime;
+                        transform.position += (Vector3)dist;
+                    }
+                    else
+                    {
+                        speed = followSpeed * (dist.magnitude / followDistance);
+                        transform.position += (Vector3)dist.normalized * (speed * Time.deltaTime);
                     }
                 }
-                else
-                {
-                    if (!facingLeft)
-                    {
-                        transform.rotation = Quaternion.Euler(0, -90, 0);
-                        facingLeft = true;
-                    }
-                }
-
-                if (dist.magnitude <= followSpeed * Time.fixedDeltaTime)
-                    transform.position += (Vector3)dist;
-                else
-                    transform.position += (Vector3)dist.normalized * (followSpeed * Time.fixedDeltaTime * (dist.magnitude / followDistance));
             }
+            anim.SetFloat("speed", speed);
         }
     }
 }

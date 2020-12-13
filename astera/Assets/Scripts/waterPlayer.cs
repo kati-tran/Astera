@@ -12,6 +12,7 @@ public class waterPlayer : MonoBehaviour
 
     public bool turtle;
     public int swimForce;
+    int waterColliderCount = 0;
     bool underwater;
     bool swimming;
     bool swimmingLoop;
@@ -54,14 +55,20 @@ public class waterPlayer : MonoBehaviour
         {
             swimming = false;
         }
-        // when the cat sinks below this point, push it up
-        if (rb.transform.position.y < floatPosition - floatDifference) {
-            rb.AddForce(transform.up * floatForce);
-        }
 
-        // when the cat goes above this point, push it down
-        else if(rb.transform.position.y > floatPosition - floatDifference) {
-            rb.AddForce(transform.up * -floatForce);
+        if (underwater)
+        {
+            // when the cat sinks below this point, push it up
+            if (rb.transform.position.y < floatPosition - floatDifference)
+            {
+                rb.AddForce(transform.up * floatForce);
+            }
+
+            // when the cat goes above this point, push it down
+            else if (rb.transform.position.y > floatPosition - floatDifference)
+            {
+                rb.AddForce(transform.up * -floatForce);
+            }
         }
 
         if (turtle && underwater)
@@ -90,15 +97,14 @@ public class waterPlayer : MonoBehaviour
 
                 AudioManager.Play("splash");
                 //Debug.Log("Entered at" + rb.transform.position.y);
-                if (!turtle)
-                {
+                
+                //if (!turtle)
                     floatPosition = rb.transform.position.y;
-                }
 
                 rb.gravityScale = 0.1f;
                 rb.mass = 0.5f;
                 underwater = true;
-
+                ++waterColliderCount;
                
             }
 
@@ -116,11 +122,15 @@ public class waterPlayer : MonoBehaviour
     void OnTriggerExit2D (Collider2D col)
     {
          if (col.gameObject.tag == "Water"){
-           // FindObjectOfType<AudioManager>().Play("splash");
-
-           rb.gravityScale = 4;
-           rb.mass = 1;
-           underwater = false;
+            // FindObjectOfType<AudioManager>().Play("splash");
+            --waterColliderCount;
+            if(waterColliderCount <= 0)
+            {
+                waterColliderCount = 0;
+                rb.gravityScale = 4;
+                rb.mass = 1;
+                underwater = false;
+            }
          }
 
     }

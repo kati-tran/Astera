@@ -6,6 +6,9 @@ public class foxTriggerPoint : MonoBehaviour
 {
     public GameObject player;
     public GameObject fox;
+    public GameObject drawing;
+    public GameObject crystalCluster;
+    public Material gemMaterial;
 
     PlayerMove playerMove;
 
@@ -30,6 +33,10 @@ public class foxTriggerPoint : MonoBehaviour
         {
             playerMove.activeSpirit = PlayerMove.Spirit.Fox;
             fox.GetComponent<FoxScript>().Activate();
+            drawing.SetActive(true);
+            crystalCluster.GetComponentInChildren<Light>().enabled = true;
+            foreach (MeshRenderer renderer in crystalCluster.GetComponentsInChildren<MeshRenderer>())
+                renderer.material = gemMaterial;
             Destroy(gameObject);
         }
     }
