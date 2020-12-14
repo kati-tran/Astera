@@ -4569,6 +4569,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCat: {fileID: 285638887}
+  stopDist: 5
 --- !u!4 &763125573 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1399224873204785733, guid: 5135ccedfa869c74483e1ce654e18aea,
@@ -6550,6 +6551,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCat: {fileID: 285638887}
+  stopDist: 4
 --- !u!1001 &1065936399
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6955,6 +6957,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCat: {fileID: 285638887}
+  stopDist: 2
 --- !u!4 &1065936407 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1399224873204785733, guid: 5135ccedfa869c74483e1ce654e18aea,
@@ -11675,6 +11678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   mainCat: {fileID: 285638887}
+  stopDist: 7
 --- !u!1001 &2003826242
 PrefabInstance:
   m_ObjectHideFlags: 0
