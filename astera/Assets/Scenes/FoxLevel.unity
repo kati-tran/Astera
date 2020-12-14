@@ -318,7 +318,8 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -7.839003, y: 12.528451}
+  - {x: -8.200467, y: 10.971571}
+  - {x: -7.6942253, y: 12.582564}
   - {x: 4.945777, y: 14.832197}
 --- !u!1 &36290959 stripped
 GameObject:
@@ -7573,10 +7574,10 @@ EdgeCollider2D:
   m_Offset: {x: 0, y: 0}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -37.732666, y: 40.96158}
-  - {x: -27.90982, y: 41.95247}
-  - {x: -16.87201, y: 45.77008}
-  - {x: -10.7612915, y: 46.15442}
+  - {x: -37.790436, y: 41.16378}
+  - {x: -27.849121, y: 42.173904}
+  - {x: -16.705322, y: 46.007866}
+  - {x: -10.7612915, y: 46.21219}
   - {x: -1.5090332, y: 47.1517}
 --- !u!68 &228814749
 EdgeCollider2D:
@@ -13458,7 +13459,7 @@ PrefabInstance:
     - target: {fileID: 6510635593416116556, guid: ed18eacbf5bb4514d8a6b7a36c669520,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -13.9
+      value: -13.64
       objectReference: {fileID: 0}
     - target: {fileID: 6510635593416116556, guid: ed18eacbf5bb4514d8a6b7a36c669520,
         type: 3}
@@ -13513,7 +13514,7 @@ PrefabInstance:
     - target: {fileID: 6510635593416116556, guid: ed18eacbf5bb4514d8a6b7a36c669520,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.5
+      value: 2.7
       objectReference: {fileID: 0}
     - target: {fileID: 6510635593416116556, guid: ed18eacbf5bb4514d8a6b7a36c669520,
         type: 3}
@@ -14774,13 +14775,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.34436068, y: 1.1413645}
+    - - {x: -0.34436068, y: 1.1110872}
       - {x: -0.9111585, y: 0.28536066}
       - {x: -0.9222448, y: 0.07938641}
       - {x: -0.44543377, y: -0.04511261}
       - {x: 0.82723874, y: -0.0029158294}
       - {x: 0.820297, y: 0.6398567}
-      - {x: 0.4450001, y: 1.0574421}
+      - {x: 0.4954558, y: 1.0650111}
 --- !u!1001 &820834317
 PrefabInstance:
   m_ObjectHideFlags: 0
