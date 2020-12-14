@@ -38,7 +38,7 @@ public class waterPlayer : MonoBehaviour
         }
         else if (swimmingLoop && !swimming)
         {
-            AudioManager.fadeOut("swim", 1f, true);
+            AudioManager.fadeOut("swim", .5f, true);
             swimmingLoop = false;
         }
 
@@ -115,7 +115,7 @@ public class waterPlayer : MonoBehaviour
 
             if (col.gameObject.name.StartsWith("SNature_CupedLil") && underwater)
             {
-                transform.position = col.gameObject.transform.position + new Vector3(0f,0.5f,0f);
+                transform.position = col.gameObject.transform.position;
             }
          }
 

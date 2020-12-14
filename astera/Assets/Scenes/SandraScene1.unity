@@ -3422,7 +3422,7 @@ MonoBehaviour:
     volume: 0.612
     pitch: 1
     spatialBlend: 0
-    loop: 0
+    loop: 1
     source: {fileID: 0}
     playFrom: {fileID: 0}
     spread: 0
@@ -23925,7 +23925,7 @@ PrefabInstance:
     - target: {fileID: 1003787271059434101, guid: 925bc3fd925fd0c4c80d7e83b67ba239,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.010000229
+      value: -0.33
       objectReference: {fileID: 0}
     - target: {fileID: 1003787271059434101, guid: 925bc3fd925fd0c4c80d7e83b67ba239,
         type: 3}
