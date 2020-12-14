@@ -11768,8 +11768,8 @@ MonoBehaviour:
   initAnimWalkSpeed: 5
   initAnimWaitTime: 1
   leadMoveSpeed: 20
-  leadStartDist: 30
-  leadApproachDist: 13
+  leadStartDist: 20
+  leadApproachDist: 7
   targetPos:
   - pos: {x: 37.22, y: 0.45, z: 0}
     wait: 0

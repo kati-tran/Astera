@@ -7,9 +7,9 @@ public class catEndScene : MonoBehaviour
 	Animator anim;
 	public GameObject mainCat;
 	bool ran;
+    public float stopDist = 5;
+    
     // Start is called before the first frame update
-
-
     void Start()
     {
     	anim = GetComponent<Animator>();
@@ -21,6 +21,7 @@ public class catEndScene : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
     	if(ran)
     	{
 	    		        // changes 3d model rotation if player is moving left or right
@@ -33,15 +34,19 @@ public class catEndScene : MonoBehaviour
 	            transform.rotation = Quaternion.Euler(0, 0, 0);
 	        }
         anim.SetFloat("Speed", Mathf.Abs(mainCat.GetComponent<Rigidbody2D>().velocity.x));
-    	}
-        	
+    	}*/
+        
+        if(!ran && ((Vector2)(transform.position - mainCat.transform.position)).magnitude <= stopDist)
+        {
+            ran = true;
+            anim.SetBool("run", false);
+            GetComponent<PlayerMove>().enabled = true;
+            GetComponent<EndSceneGoToPlayer>().enabled = false;
+            transform.rotation = mainCat.transform.rotation;
+        }
     }
 
-    void FixedUpdate()
-    {
-
-    }
-
+    /*
     void OnTriggerEnter2D(Collider2D col)
     {
     	Debug.Log(col.gameObject.name);
@@ -52,5 +57,5 @@ public class catEndScene : MonoBehaviour
     		GetComponent<travelTo>().enabled = false;
     		ran = true;
     	}
-    }
+    }*/
 }

@@ -21,8 +21,8 @@ public class FoxScript : MonoBehaviour
     public float initAnimWalkSpeed = 1;
     public float initAnimWaitTime = 1;
     public float leadMoveSpeed = 15;
-    public float leadStartDist = 30;
-    public float leadApproachDist = 10;
+    public float leadStartDist = 20;
+    public float leadApproachDist = 7;
     public List<TargetPos> targetPos;
     Animator anim;
 
