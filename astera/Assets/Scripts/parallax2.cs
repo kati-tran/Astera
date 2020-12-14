@@ -19,7 +19,7 @@ public class parallax2 : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         Vector3 camPos = Camera.transform.position;
         Vector2 newPos = originalPos + camPos * parallaxDist;
