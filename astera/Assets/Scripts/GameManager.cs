@@ -16,10 +16,20 @@ public class GameManager : MonoBehaviour
         }
 	}
 
-	public void loadScene(string scene)
+	public void reload()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
+	public void loadSceneString(string scene)
 	{
 		Debug.Log("loading "+ scene);
 		SceneManager.LoadScene(scene);
+	}
+
+	public void loadSceneInt(int levelIndex)
+	{
+		StartCoroutine(LoadLevel(levelIndex));
 	}
 
 	public void loadNextScene()
@@ -40,5 +50,6 @@ public class GameManager : MonoBehaviour
 		yield return new WaitForSeconds(1f);
 		SceneManager.LoadScene(levelIndex);
 	}
+
 
 }
