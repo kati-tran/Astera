@@ -1,2 +1,27 @@
 # Astera
-The game is a low poly 2D platformer in which the player controls a black cat who is lost in the woods and must find their way back home. Within a large forest, the player must navigate past obstacles such as rocks, cliffs, trees, and ponds.. However, the woods are also inhabited by several mystical animal spirits, who can lend their abilities to the player and aid them on their journey. The purpose of this game is to provide the player with calming and aesthetic visuals to complement minimalistic gameplay. The motivation behind this game idea was our shared enjoyment of peaceful, fantasy games that contrast with the many combat-based mainstream games in the market. Overall, the game is in the style of atmospheric platformers like Limbo and Gris but overall does not stray too far from the market. However, one notable distinction is we have added unique abilities to vary the gameplay between each level. There are a total of three levels for the player to play through. Each level has a unique atmosphere and offers distinctive gameplay experience.
+
+Astera is a low poly 2D platformer written in C# and created with the Unity game engine. 
+
+<img src="titlescreen.png"><br>
+
+Play it [here!](http://pseudologica.herokuapp.com/astera.html) (http://pseudologica.herokuapp.com/astera.html)
+
+## Story
+
+A mysterious forest on the outskirts of humanity greets the sun as it does every day. However, you, a young kitten, are a new addition to the woods, unsure of where you are or how to get home. As you wander through the twists and turns of this unfamiliar place, you discover that there is more to the strange energy of it than meets the eye.
+
+
+## Three Levels
+
+Play each level to experience a unique atmosphere and gain a new ability. There are a total of three levels—bird, turtle, and fox.
+
+<img src="bird.gif"><br>
+<img src="turtle.gif"><br>
+<img src="fox.gif"><br>
+
+## Credits
+Game by Shawn Agustin, Kasen Chaque, Sandra Soto, Kati Tran, and Weixuan Tan
+Website by Yingyan Wu
+
+## License
+[MIT](https://choosealicense.com/licenses/mit/)
